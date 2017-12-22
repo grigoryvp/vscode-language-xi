@@ -1,0 +1,103 @@
+{
+	"patterns": [{
+    "comment": "caption",
+    "name": "comment",
+    "match": "^[^ ].* @$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  },
+
+  {
+    "comment": "headers"
+  }, {
+    "name": "keyword",
+    "match": "^[^ ].* \\.$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  }, {
+    "name": "support.type",
+    "match": "^ {2}[^ ].* \\.$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  }, {
+    "name": "support.function",
+    "match": "^ {4}[^ ].* \\.$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  }, {
+    "name": "support.variable",
+    "match": "^ {6}[^ ].* \\.$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  }, {
+    "name": "support.type.property-name",
+    "match": "^ {8}[^ ].* \\.$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  }, {
+    "name": "constant.numeric",
+    "match": "^ {10}[^ ].* \\.$",
+    "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
+  },
+
+  {
+    "comment": "paragraph start",
+    "match": "^ *([\\.?!]) (.+)",
+    "captures": {
+      "1": {"name": "punctuation"},
+      "2": {
+        "patterns": [{
+          "include": "#special"
+        }]
+      }
+    }
+  },
+
+  {
+    "comment": "text between '|' and '|' without adjasted spaces",
+    "include": "#special"
+  }],
+
+  "repository": {
+    "header-end": {
+      "patterns": [{
+        "comment": "plain header, ex 'foo .'",
+        "match": "[^ ] (\\.|@)$",
+        "captures": {
+          "1": {"name": "punctuation.definition.tag"}
+        }
+      },{
+        "comment": "header that is itself a link, ex 'foo[] .', no spaces",
+        "match": "[^ ](\\[\\]) (\\.|@)$",
+        "captures": {
+          "1": {"name": "meta.link"},
+          "2": {"name": "punctuation.definition.tag"}
+        }
+      }, {
+        "comment": "header with link, ex 'foo [bar] .', space separated",
+        "match": "[^ ] +(\\[.+\\]) (\\.|@)$",
+        "captures": {
+          "1": {
+            "name": "punctuation.definition.tag",
+            "patterns": [{
+              "match": "\\[(.+)\\]",
+              "captures": {
+                "1": {"name": "meta.link"}
+              }
+            }]
+          },
+          "2": {"name": "punctuation.definition.tag"}
+        }
+      }]
+    },
+
+    "special": {
+      "comment": "order matters, match max width first, ex ||a||",
+      "patterns": [{
+        "match": "\\|([^ ].+[^ ])\\|",
+        "name": "punctuation.definition.tag",
+        "captures": {"1": {"name": "string"}}
+      }, {
+        "match": "\\|([^ ]{1,2})\\|",
+        "name": "punctuation.definition.tag",
+        "captures": {"1": {"name": "string"}}
+      }]
+    }
+  },
+
+	"scopeName": "text.xi"
+}
