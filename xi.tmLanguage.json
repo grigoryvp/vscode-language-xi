@@ -17,7 +17,7 @@
     "match": "^ {2}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
-    "name": "support.function",
+    "name": "support.type.property-name",
     "match": "^ {4}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
@@ -25,7 +25,7 @@
     "match": "^ {6}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
-    "name": "support.type.property-name",
+    "name": "support.function",
     "match": "^ {8}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
@@ -35,16 +35,54 @@
   },
 
   {
+    "comment": "paragraph with code block start",
+    "match": "^ *([\\.?!] )*\\|($| .+$|\\{[^\\}]*\\}$|\\{[^\\}]*\\} .+$)",
+    "captures": {
+      "0": {"patterns": [{"include": "#code-block"}]},
+      "1": {"name": "punctuation"}
+    }
+  },
+
+  {
     "comment": "paragraph start",
     "match": "^ *([\\.?!]) (.+)",
     "captures": {
       "1": {"name": "punctuation"},
       "2": {
         "patterns": [{
+          "include": "#http-link"
+        }, {
+          "include": "#wikiword"
+        }, {
           "include": "#special"
+        }, {
+          "include": "#code-inline"
         }]
       }
     }
+  },
+
+  {
+    "comment": "[http://foo|",
+    "include": "#http-link"
+  },
+
+  {
+    "comment": "block code sample, spaces followed by '|' and space",
+    "match": "^ *\\|($| .+$|\\{[^\\}]*\\} .+$)",
+    "captures": {
+      "0": {"patterns": [{"include": "#code-block"}]}
+    }
+  },
+
+  {
+    "comment": "inline code sample, |{descr}code|",
+    "include": "#code-inline"
+  },
+
+  {
+    "comment": "text between '[' and ']' without adjasted spaces",
+    "include": "#wikiword"
   },
 
   {
@@ -86,15 +124,80 @@
     },
 
     "special": {
-      "comment": "order matters, match max width first, ex ||a||",
       "patterns": [{
-        "match": "\\|([^ ].+[^ ])\\|",
+        "comment": "text like ||foo||",
+        "match": "\\|([^ ]+)\\|",
         "name": "punctuation.definition.tag",
         "captures": {"1": {"name": "string"}}
       }, {
-        "match": "\\|([^ ]{1,2})\\|",
+        "comment": "text like |foo bar baz|",
+        "match": "\\|([^ \\|][^ \\|]*[^ \\|])\\|",
         "name": "punctuation.definition.tag",
         "captures": {"1": {"name": "string"}}
+      }]
+    },
+
+    "wikiword": {
+      "patterns": [{
+        "comment": "[a]",
+        "match": "\\[([^ \\]]+)\\]",
+        "name": "punctuation.definition.tag",
+        "captures": {"1": {"name": "meta.link"}}
+      }, {
+        "comment": "[foo bar baz]",
+        "match": "\\[([^ \\]][^\\]]*[^ \\]])\\]",
+        "name": "punctuation.definition.tag",
+        "captures": {"1": {"name": "meta.link"}}
+      }]
+    },
+
+    "http-link": {
+      "patterns": [{
+        "comment": "|http://foo|",
+        "match": "\\|(http://[^\\|]+)\\|",
+        "name": "punctuation.definition.tag",
+        "captures": {"1": {"name": "meta.link"}}
+      }, {
+        "comment": "|https://foo|",
+        "match": "\\|(https://[^\\|]+)\\|",
+        "name": "punctuation.definition.tag",
+        "captures": {"1": {"name": "meta.link"}}
+      }]
+    },
+
+    "code-block": {
+      "comment": "block code sample, spaces followed by '|' and space",
+      "patterns": [{
+        "match": "^ *([\\.?!] )*(\\|)(\\{[^\\}]*\\})*(.*)$",
+        "captures": {
+          "1": {"name": "punctuation"},
+          "2": {"name": "punctuation.definition.tag"},
+          "3": {
+            "patterns": [{
+              "match": "\\{[^\\}]*\\}",
+              "name": "punctuation.definition.tag"
+            }]
+          },
+          "4": {"name": "punctuation"}
+        }
+      }]
+    },
+
+    "code-inline": {
+      "patterns": [{
+        "comment": "inline code sample, |{descr}foo|bar|",
+        "match": "\\|\\{[^\\}]*\\}([^ ]*)\\|",
+        "name": "punctuation.definition.tag",
+        "captures": {
+          "1": {"name": "punctuation"}
+        }
+      }, {
+        "comment": "inline code sample, |{descr}foo bar baz|",
+        "match": "\\|\\{[^\\}]*\\}([^\\|]*)\\|",
+        "name": "punctuation.definition.tag",
+        "captures": {
+          "1": {"name": "punctuation"}
+        }
       }]
     }
   },

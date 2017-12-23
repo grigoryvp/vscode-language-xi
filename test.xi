@@ -1,23 +1,53 @@
 xi test @
 
 |||
+|http://foo|
+|https://foo|
 ||| text
 text |||
-. |||
-. ||| text
-||a||
-||a|| text
-. ||a||
-. ||a|| text
-| code
-  | code
-. | code
-text ||Lcode|
-text ||Lcode| text
+text ||| text
+||special||
+text ||special||
+||special|| text
+text ||special|| text
 text | text
 text | text |
 text | text | text
-h1 .
+. |||
+. ||| text
+. ||special||
+. ||special|| text
+. text |||
+. text ||| text
+. text ||special||
+. text ||special|| text
+. |http://foo|
+. |https://foo|
+| code
+|{lng:foo} code
+| {lng:foo} code
+  | code
+. | code
+. |{lng:foo} code
+  |{lng:foo} code
+  |{lng:foo}
+  |
+. | {lng:foo} code
+. |not a code
+! | code
+? | code
+. text | not a code
+[0.0...1.0) range, not a link.
+. |{}| non-text item (no meta).
+. |{| and |}| two non-text items.
+. |{x}| Non-text item, not a language specifier.
+. |{x}|: Non-text item and |:|.
+|{lng:py}a = 1| inline code with spaces, one per line, no '|'.
+|{lng:py}a=1| inline code without spaces, |{lng:py}a=1|2|.
+. |{lng:py}a = 1|: inline code after paragraph.
+[wikiword]
+[c] - single wikiword.
+kh1 .
 h1 link[] .
 h1 local link [#1] .
 h1 wikiword link [wikiword] .
@@ -51,16 +81,8 @@ h1 wikiword link [wikiword] .
 . dot at end is always paragraph $ .
 not a link [] .
 paragraph$ .
-! | this is code
-[0.0...1.0) range, not a link.
-. |{}| non-text item (no meta).
-. |{| and |}| two non-text items.
-. |{x}| Non-text item, not a language specifier.
-. |{x}|: Non-text item and |:|.
-. |{lng:py}a = 1|: inline code.
 wrong color of following square braces [] .
 wrong header color $ .
 [] .
   [] .
-  | . buffer .
-[c] - single wikiword.
+  | . text .
