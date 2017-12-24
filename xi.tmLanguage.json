@@ -139,15 +139,13 @@
 
     "wikiword": {
       "patterns": [{
-        "comment": "[a]",
-        "match": "\\[([^ \\]]+)\\]",
-        "name": "punctuation.definition.tag",
-        "captures": {"1": {"name": "meta.link"}}
-      }, {
         "comment": "[foo bar baz]",
-        "match": "\\[([^ \\]][^\\]]*[^ \\]])\\]",
+        "match": "\\[([^ \\]]?)\\]|\\[([^ \\]][^\\]]*[^ \\]])\\]",
         "name": "punctuation.definition.tag",
-        "captures": {"1": {"name": "meta.link"}}
+        "captures": {
+          "1": {"name": "meta.link"},
+          "2": {"name": "meta.link"}
+        }
       }]
     },
 

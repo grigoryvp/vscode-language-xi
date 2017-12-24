@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "publisher": "grigoryvp",
   "engines": { "vscode": "^1.0.0" },
-  "categories": [ "Languages" ],
+  "categories": [ "Languages", "Other" ],
+	"activationEvents": ["onLanguage:xi"],
+	"main": "./extension.js",
   "contributes": {
     "languages": [{
       "id": "xi",
