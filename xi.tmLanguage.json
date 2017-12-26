@@ -13,7 +13,7 @@
     "match": "^[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
-    "name": "support.type",
+    "name": "support.class",
     "match": "^ {2}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
@@ -52,11 +52,12 @@
         "patterns": [{
           "include": "#http-link"
         }, {
+          "comment": "before 'special', ex |{lng:foo}bar| is code",
+          "include": "#code-inline"
+        }, {
           "include": "#wikiword"
         }, {
           "include": "#special"
-        }, {
-          "include": "#code-inline"
         }]
       }
     }
@@ -76,7 +77,7 @@
   },
 
   {
-    "comment": "inline code sample, |{descr}code|",
+    "comment": "inline code sample, |{descr}code|; before 'special'",
     "include": "#code-inline"
   },
 
@@ -131,7 +132,7 @@
         "captures": {"1": {"name": "string"}}
       }, {
         "comment": "text like |foo bar baz|",
-        "match": "\\|([^ \\|][^ \\|]*[^ \\|])\\|",
+        "match": "\\|([^ \\|][^\\|]*[^ \\|])\\|",
         "name": "punctuation.definition.tag",
         "captures": {"1": {"name": "string"}}
       }]

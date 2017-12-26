@@ -10,9 +10,12 @@ text ||| text
 text ||special||
 ||special|| text
 text ||special|| text
+|special with spaces|
+text |special with spaces| text
 text | text
 text | text |
 text | text | text
+text |{lng:foo}not a special but language| text
 . |||
 . ||| text
 . ||special||
@@ -34,6 +37,7 @@ text | text | text
   |
 . | {lng:foo} code
 . |not a code
+. text |{lng:foo}not a special but language| text
 ! | code
 ? | code
 . text | not a code
