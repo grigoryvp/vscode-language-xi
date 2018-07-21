@@ -1,6 +1,8 @@
 {
   "name": "language-xi",
-  "version": "1.0.1",
+  "displayName": "Xi markup language",
+  "description": "Syntax highlighting and wikiword jumps supoort for Xi markup language",
+  "version": "1.0.2",
   "publisher": "grigoryvp",
   "engines": { "vscode": "^1.0.0" },
   "categories": [ "Languages", "Other" ],
