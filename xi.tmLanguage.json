@@ -59,6 +59,8 @@
         }, {
           "include": "#accent"
         }, {
+          "include": "#parameter"
+        }, {
           "include": "#special"
         }]
       }
@@ -91,6 +93,11 @@
   {
     "comment": "text between '`' without adjasted spaces",
     "include": "#accent"
+  },
+
+  {
+    "comment": "text between {} prefixed with a single letter and a space",
+    "include": "#parameter"
   },
 
   {
@@ -149,10 +156,22 @@
       "patterns": [{
         "comment": "`foo bar baz`",
         "match": "`([^ `]?)`|`([^ `][^`]*[^ `])`",
-        "name": "punctuation.definition.tag",
+        "name": "punctuation",
         "captures": {
           "1": {"name": "accent.xi"},
           "2": {"name": "accent.xi"}
+        }
+      }]
+    },
+
+    "parameter": {
+      "patterns": [{
+        "comment": "{i foo}",
+        "match": "(\\{)[a-z] [^\\}]+(\\})",
+        "name": "punctuation",
+        "captures": {
+          "1": {"name": "punctuation.definition.tag"},
+          "2": {"name": "punctuation.definition.tag"}
         }
       }]
     },

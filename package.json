@@ -1,6 +1,6 @@
 {
   "name": "language-xi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "grigoryvp",
   "engines": { "vscode": "^1.0.0" },
   "categories": [ "Languages", "Other" ],
