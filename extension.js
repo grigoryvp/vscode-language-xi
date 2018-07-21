@@ -56,7 +56,7 @@ class LinkProvider {
       while(endIdx > 0 && text[endIdx] !== '[') endIdx --;
       const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
       const name = text.substr(beginIdx, endIdx - beginIdx);
-      const fileName = `${name.replace(/ /g, '_')}.xi`;
+      const fileName = `${name.replace(/ /g, '_')}.xi`.toLowerCase();
       const dir = path.dirname(doc.fileName);
       res.push(new vscode.DocumentLink(
 				new vscode.Range(begin, end),
