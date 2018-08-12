@@ -28,12 +28,11 @@ class LinkProvider {
       //  Skip '[' and ']', min length is 3 for wikiwords like '[v]'.
       const beginIdx = match.index + 1;
       const endIdx = match.index + match[0].length - 1;
-      const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
       const name = text.substr(beginIdx, endIdx - beginIdx);
       const fileName = `${name.split('#')[0].replace(/ /g, '_')}.xi`;
       const dir = path.dirname(doc.fileName);
       res.push(new vscode.DocumentLink(
-				new vscode.Range(begin, end),
+				new vscode.Range(doc.positionAt(beginIdx), doc.positionAt(endIdx)),
         vscode.Uri.file(path.join(dir, fileName))));
       match = query.exec(text);
     }
