@@ -1,5 +1,5 @@
 const vscode = require('vscode');
-const geLinkProvider = require('get_link_provider');
+const geLinkProvider = require('./get_link_provider.js');
 
 
 module.exports.activate = function(ctx) {
