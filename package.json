@@ -6,19 +6,40 @@
   "icon": "icon.png",
   "version": "1.0.4",
   "publisher": "grigoryvp",
-  "engines": { "vscode": "^1.0.0" },
-  "categories": [ "Languages", "Other" ],
-	"activationEvents": ["onLanguage:xi"],
-	"main": "./extension.js",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "categories": [
+    "Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:xi"
+  ],
+  "main": "./extension.js",
+  "files": [
+    "*.js",
+    "xi.tmLanguage.json"
+  ],
   "contributes": {
-    "languages": [{
-      "id": "xi",
-      "extensions": [".xi"]
-    }],
-    "grammars": [{
-      "language": "xi",
-      "scopeName": "text.xi",
-      "path": "./xi.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "xi",
+        "extensions": [
+          ".xi"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "xi",
+        "scopeName": "text.xi",
+        "path": "./xi.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
