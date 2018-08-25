@@ -9,8 +9,10 @@ module.exports.activate = function(ctx) {
   const regProvider = vscode.languages.registerDocumentLinkProvider;
   const LinkProvider = geLinkProvider(vscode);
   ctx.subscriptions.push(regProvider('xi', new LinkProvider()));
-  vscode.workspace.onDidOpenTextDocument(e => {
-    const filePath = e.fileName;
+  vscode.window.onDidChangeActiveTextEditor(e => {
+    if (!e) return;
+    if (!e.document) return;
+    const filePath = e.document.fileName;
     if (filePath.endsWith('.xi')) {
       let history = ctx.globalState.get(HISTORY_KEY);
       if (!Array.isArray(history)) history = [];
