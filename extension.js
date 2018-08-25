@@ -14,7 +14,7 @@ module.exports.activate = function(ctx) {
     if (filePath.endsWith('.xi')) {
       let history = ctx.globalState.get(HISTORY_KEY);
       if (!Array.isArray(history)) history = [];
-      if (history.length > 100) history.pop();
+      if (history.length > 100) history = history.slice(-100);
       history.push(filePath);
       ctx.globalState.update(HISTORY_KEY, history);
     }
