@@ -17,7 +17,8 @@
     "onLanguage:xi"
   ],
   "scripts": {
-    "build": "vsce package"
+    "build": "vsce package",
+    "publish": "chrome https://marketplace.visualstudio.com/manage"
   },
   "main": "./extension.js",
   "files": [
