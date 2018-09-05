@@ -5,17 +5,17 @@ const getLinkProvider = require('./../get_link_provider.js');
 describe("LinkProvider class", () => {
 
   const vscode = {
-    Range: function() {},
-    DocumentLink: function() {},
+    Range: function(...v) { [this.begin, this.end] = [...v]; },
+    DocumentLink: function(...v) { [this.range, this.uri] = [...v]; },
     Uri: {
-      file: () => ({}),
+      file: (path) => ({path}),
     },
   };
 
   const doc = {
     getText: () => '  | [a]',
     fileName: 'foo.xi',
-    positionAt: () => 0,
+    positionAt: (v) => v,
   };
 
   const cancel = {};
