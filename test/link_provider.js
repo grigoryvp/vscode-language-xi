@@ -1,4 +1,5 @@
 const chai = require('chai');
+const expect = chai.expect;
 const getLinkProvider = require('./../get_link_provider.js');
 
 
@@ -13,7 +14,7 @@ describe("LinkProvider class", () => {
   };
 
   const doc = {
-    getText: () => '  | [a]',
+    getText: () => '',
     fileName: 'foo.xi',
     positionAt: (v) => v,
   };
@@ -28,9 +29,13 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("runs", () => {
+  it("matches simple link", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
+    doc.getText = () => `[a]`;
     const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 2}});
   });
 });
