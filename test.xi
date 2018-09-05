@@ -1,5 +1,9 @@
 xi test @
 
+Todo .
+# Links are not working in this test.
+# '#' list symbol is not working.
+
 text
 |||
 |http://foo|
@@ -51,6 +55,8 @@ text |{lng:foo}not a special but language| text
 |{lng:py}a=1| inline code without spaces, |{lng:py}a=1|2|.
 . |{lng:py}a = 1|: inline code after paragraph.
 . Text with {i input} arg.
+. |{lng:js}
+  | [notlink]
 [jump test]
 [c] - single wikiword.
 kh1 .
