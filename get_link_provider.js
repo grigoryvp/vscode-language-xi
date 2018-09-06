@@ -40,6 +40,11 @@ module.exports = function(vscode) {
         //  Do not match links in code smaples like `  | [foo]`
         if (prefix.match(/^\s*\|\s+/)) continue;
 
+        let pipeCount = 0;
+        for (const char of prefix) if (char === '|') pipeCount ++;
+        //  Do not match likes inside marked words: `|foo| |bar| |[baz]|`.
+        if (pipeCount % 2) continue;
+
         const fileName = `${name.split('#')[0].replace(/ /g, '_')}.xi`;
         const dir = path.dirname(doc.fileName);
         const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));

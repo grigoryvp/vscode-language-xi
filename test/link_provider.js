@@ -47,4 +47,13 @@ describe("LinkProvider class", () => {
     const ret = inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
   });
+
+
+  it("not matches inside marked text", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "|foo| |bar| |[baz]|";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(0);
+  });
 });
