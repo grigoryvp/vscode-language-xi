@@ -28,12 +28,21 @@ module.exports = function(vscode) {
         //  Skip '[' and ']', min length is 3 for wikiwords like '[v]'.
         const beginIdx = match.index + 1;
         const endIdx = match.index + match[0].length - 1;
+        let lineBeginIdx = match.index;
+        while (lineBeginIdx > 0 && text[lineBeginIdx - 1] !== "\n") {
+          lineBeginIdx --;
+        }
         const name = text.substr(beginIdx, endIdx - beginIdx);
-        const fileName = `${name.split('#')[0].replace(/ /g, '_')}.xi`;
-        const dir = path.dirname(doc.fileName);
-        res.push(new vscode.DocumentLink(
-          new vscode.Range(doc.positionAt(beginIdx), doc.positionAt(endIdx)),
-          vscode.Uri.file(path.join(dir, fileName))));
+        const prefix = text.substr(lineBeginIdx, match.index - lineBeginIdx);
+        //  Do not match links in code smaples like `  | [foo]`
+        if (!prefix.match(/^\s*\|\s+$/)) {
+          const fileName = `${name.split('#')[0].replace(/ /g, '_')}.xi`;
+          const dir = path.dirname(doc.fileName);
+          const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
+          const range = new vscode.Range(begin, end);
+          const uri = vscode.Uri.file(path.join(dir, fileName));
+          res.push(new vscode.DocumentLink(range, uri));
+        }
         match = query.exec(text);
       }
       return res;
@@ -58,9 +67,9 @@ module.exports = function(vscode) {
         const name = text.substr(beginIdx, endIdx - beginIdx);
         const fileName = `${name.replace(/ /g, '_')}.xi`.toLowerCase();
         const dir = path.dirname(doc.fileName);
-        res.push(new vscode.DocumentLink(
-          new vscode.Range(begin, end),
-          vscode.Uri.file(path.join(dir, fileName))));
+        const range = new vscode.Range(begin, end);
+        const uri = vscode.Uri.file(path.join(dir, fileName));
+        res.push(new vscode.DocumentLink(range, uri));
         match = query.exec(text);
       }
       return res;

@@ -32,10 +32,19 @@ describe("LinkProvider class", () => {
   it("matches simple link", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
-    doc.getText = () => `[a]`;
+    doc.getText = () => "[a]";
     const ret = inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 2}});
+  });
+
+
+  it("not matches inside code sample", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "  | [a]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(0);
   });
 });
