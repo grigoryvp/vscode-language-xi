@@ -40,7 +40,7 @@ describe("LinkProvider class", () => {
   });
 
 
-  it.only("not matches inside code sample", () => {
+  it("not matches inside code sample", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "  | foo [a]";
