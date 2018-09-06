@@ -40,10 +40,10 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("not matches inside code sample", () => {
+  it.only("not matches inside code sample", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
-    doc.getText = () => "  | [a]";
+    doc.getText = () => "  | foo [a]";
     const ret = inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
   });
