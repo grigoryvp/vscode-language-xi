@@ -45,11 +45,18 @@ module.exports = function(vscode) {
         //  Do not match likes inside marked words: `|foo| |bar| |[baz]|`.
         if (pipeCount % 2) continue;
 
-        const fileName = `${name.split('#')[0].replace(/ /g, '_')}.xi`;
+        const [link, anchor] = name.split('#');
+        const fileName = `${link.replace(/ /g, '_')}.xi`;
         const dir = path.dirname(doc.fileName);
+        const file = path.join(dir, fileName);
         const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
         const range = new vscode.Range(begin, end);
-        const uri = vscode.Uri.file(path.join(dir, fileName));
+        const uri = vscode.Uri.parse(`command:extension.xi.open?${
+          encodeURIComponent(JSON.stringify({
+            file,
+            anchor
+          }))
+        }`);
         res.push(new vscode.DocumentLink(range, uri));
       }
       return res;

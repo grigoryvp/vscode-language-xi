@@ -22,6 +22,7 @@ module.exports.activate = function(ctx) {
     }
   });
   const regCmd = vscode.commands.registerCommand;
+
   ctx.subscriptions.push(regCmd('extension.xi.goBack', () => {
     const history = ctx.globalState.get(HISTORY_KEY);
     if (Array.isArray(history) && history.length > 1) {
@@ -35,5 +36,25 @@ module.exports.activate = function(ctx) {
         vscode.window.showTextDocument(doc);
       });
     }
+  }));
+
+  ctx.subscriptions.push(regCmd('extension.xi.open', (argmap) => {
+    if (!argmap) return;
+    const {file, anchor} = argmap;
+    if (!file) return;
+    const uri = vscode.Uri.file(file);
+    vscode.workspace.openTextDocument(uri).then(doc => {
+      vscode.window.showTextDocument(doc).then(editor => {
+        if (!anchor) return;
+        const text = doc.getText();
+        const idx = text.indexOf(anchor);
+        if (idx === -1) return;
+        const pos = doc.positionAt(idx);
+        const range = new vscode.Range(pos, pos);
+        editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
+        const selection = new vscode.Selection(pos, pos);
+        editor.selection = selection;
+      });
+    });
   }));
 }
