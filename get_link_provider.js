@@ -51,12 +51,20 @@ module.exports = function(vscode) {
         const file = path.join(dir, fileName);
         const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
         const range = new vscode.Range(begin, end);
-        const uri = vscode.Uri.parse(`command:extension.xi.open?${
-          encodeURIComponent(JSON.stringify({
-            file,
-            anchor
-          }))
-        }`);
+        let uri = null;
+        if (anchor) {
+          uri = vscode.Uri.parse(`command:extension.xi.open?${
+            encodeURIComponent(JSON.stringify({
+              file,
+              anchor
+            }))
+          }`);
+        }
+        else {
+          //  If no anchor like [foo#bar] is specified, use normal file
+          //  uri so VSCode will ask to create a file if it does not exists.
+          uri = vscode.Uri.file(file);
+        }
         res.push(new vscode.DocumentLink(range, uri));
       }
       return res;
