@@ -1,4 +1,7 @@
 {
+  "comment": [
+    "TODO: none yet"
+  ],
 	"patterns": [{
     "comment": "caption",
     "name": "comment",
