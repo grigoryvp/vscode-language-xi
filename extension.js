@@ -47,7 +47,7 @@ module.exports.activate = function(ctx) {
       vscode.window.showTextDocument(doc).then(editor => {
         if (!anchor) return;
         const text = doc.getText();
-        const idx = text.indexOf(anchor);
+        const idx = text.toLowerCase().indexOf(anchor.toLowerCase());
         if (idx === -1) return;
         const pos = doc.positionAt(idx);
         const range = new vscode.Range(pos, pos);
