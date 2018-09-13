@@ -1,4 +1,5 @@
-# vscode-language-xi
+# "Xi" markdown-like personal wiki language for VSCode
+
 "Xi" is a markdown-like language designed for a personal knowledge base.
 Color and indentation is used to highlight headers, paragraphs, links,
 source code examples and definitions. You can read and write Xi from
