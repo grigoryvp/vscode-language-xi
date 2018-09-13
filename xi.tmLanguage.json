@@ -16,7 +16,7 @@
     "match": "^[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
-    "name": "support.class",
+    "name": "support.function",
     "match": "^ {2}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
@@ -24,11 +24,11 @@
     "match": "^ {4}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
-    "name": "support.variable",
+    "name": "entity.name.type",
     "match": "^ {6}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
-    "name": "support.function",
+    "name": "constant",
     "match": "^ {8}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
@@ -42,7 +42,7 @@
     "match": "^ *([\\.?!] )*\\|($| .+$|\\{[^\\}]*\\}$|\\{[^\\}]*\\} .+$)",
     "captures": {
       "0": {"patterns": [{"include": "#code-block"}]},
-      "1": {"name": "punctuation"}
+      "1": {"name": "storage.type.function.arrow"}
     }
   },
 
@@ -50,7 +50,7 @@
     "comment": "paragraph start",
     "match": "^ *([\\.?!]) (.+)",
     "captures": {
-      "1": {"name": "punctuation"},
+      "1": {"name": "storage.type.function.arrow"},
       "2": {
         "patterns": [{
           "include": "#http-link"
@@ -159,7 +159,7 @@
       "patterns": [{
         "comment": "`foo bar baz`",
         "match": "`([^ `]?)`|`([^ `][^`]*[^ `])`",
-        "name": "punctuation",
+        "name": "storage.type.function.arrow",
         "captures": {
           "1": {"name": "accent.xi"},
           "2": {"name": "accent.xi"}
@@ -171,7 +171,7 @@
       "patterns": [{
         "comment": "{i foo}",
         "match": "(\\{)[a-z] [^\\}]+(\\})",
-        "name": "punctuation",
+        "name": "storage.type.function.arrow",
         "captures": {
           "1": {"name": "punctuation.definition.tag"},
           "2": {"name": "punctuation.definition.tag"}
@@ -210,7 +210,7 @@
       "patterns": [{
         "match": "^ *([\\.?!] )*(\\|)(\\{[^\\}]*\\})*(.*)$",
         "captures": {
-          "1": {"name": "punctuation"},
+          "1": {"name": "storage.type.function.arrow"},
           "2": {"name": "punctuation.definition.tag"},
           "3": {
             "patterns": [{
@@ -218,7 +218,7 @@
               "name": "punctuation.definition.tag"
             }]
           },
-          "4": {"name": "punctuation"}
+          "4": {"name": "storage.type.function.arrow"}
         }
       }]
     },
@@ -229,14 +229,14 @@
         "match": "\\|\\{[^\\}]*\\}([^ ]*)\\|",
         "name": "punctuation.definition.tag",
         "captures": {
-          "1": {"name": "punctuation"}
+          "1": {"name": "storage.type.function.arrow"}
         }
       }, {
         "comment": "inline code sample, |{descr}foo bar baz|",
         "match": "\\|\\{[^\\}]*\\}([^\\|]*)\\|",
         "name": "punctuation.definition.tag",
         "captures": {
-          "1": {"name": "punctuation"}
+          "1": {"name": "storage.type.function.arrow"}
         }
       }]
     }
