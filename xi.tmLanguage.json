@@ -159,7 +159,7 @@
       "patterns": [{
         "comment": "`foo bar baz`",
         "match": "`([^ `]?)`|`([^ `][^`]*[^ `])`",
-        "name": "constant.other.color.rgb-value.xi",
+        "name": "punctuation.definition.tag.xi",
         "captures": {
           "1": {"name": "accent.xi"},
           "2": {"name": "accent.xi"}
