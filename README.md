@@ -19,5 +19,5 @@ and leading two spaces defines second level. Third level will be 4 spaces
 and up to 10 spaces for a maximum nesting level 5). Paragraphs are marked
 with dot-space, effectively saving one empty line used in markdown:
 
-<img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" height="256">
-<img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" height="256">
+<img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" width="256">
+<img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" width="256">

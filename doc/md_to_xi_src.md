@@ -4,4 +4,4 @@ multiline text.
 
 Second paragraph text.
 ## Heading 2
-Third paragraph text
+Third paragraph text.
