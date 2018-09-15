@@ -39,7 +39,7 @@
 
   {
     "comment": "paragraph with code block start",
-    "match": "^ *([\\.?!] )*\\|($| .+$|\\{[^\\}]*\\}$|\\{[^\\}]*\\} .+$)",
+    "match": "^ *([\\.?!*#] )*\\|($| .+$|\\{[^\\}]*\\}$|\\{[^\\}]*\\} .+$)",
     "captures": {
       "0": {"patterns": [{"include": "#code-block"}]},
       "1": {"name": "constant.other.color.rgb-value.xi"}
@@ -48,7 +48,7 @@
 
   {
     "comment": "paragraph start",
-    "match": "^ *([\\.?!]) (.+)",
+    "match": "^ *([\\.?!*#]) (.+)",
     "captures": {
       "1": {"name": "constant.other.color.rgb-value.xi"},
       "2": {
