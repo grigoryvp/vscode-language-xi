@@ -1,4 +1,4 @@
-# "Xi" markdown-like personal wiki language for VSCode
+# Xi personal wiki language
 
 "Xi" is a markdown-like language designed for a personal knowledge base.
 Color and indentation is used to highlight headers, paragraphs, links,
@@ -21,3 +21,10 @@ with dot-space, effectively saving one empty line used in markdown:
 
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" width="256">
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" width="256">
+
+# License
+
+The following licensing applies to Xi personal wiki language:
+Attribution-NonCommercial-NoDerivatives 4.0 International
+(CC BY-NC-ND 4.0). For more information go to
+https://creativecommons.org/licenses/by-nc-nd/4.0/
