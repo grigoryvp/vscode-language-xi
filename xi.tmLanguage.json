@@ -176,22 +176,24 @@
     "parameter": {
       "patterns": [{
         "comment": "'{i foo}",
-        "match": "(\\{)[a-z\\-] [^\\}]+(\\})",
+        "match": "(\\{)([a-z\\-]) [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
-          "2": {"name": "punctuation.definition.tag.xi"}
+          "2": {"name": "constant.character.character-class.regexp.xi"},
+          "3": {"name": "punctuation.definition.tag.xi"}
         }
       }, {
         "comment": "'{i(type) foo}",
-        "match": "(\\{)[a-z\\-](\\()([^\\)]+)(\\)) [^\\}]+(\\})",
+        "match": "(\\{)([a-z\\-])(\\()([^\\)]+)(\\)) [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
-          "2": {"name": "punctuation.definition.tag.xi"},
-          "3": {"name": "constant.character.character-class.regexp.xi"},
-          "4": {"name": "punctuation.definition.tag.xi"},
-          "5": {"name": "punctuation.definition.tag.xi"}
+          "2": {"name": "constant.character.character-class.regexp.xi"},
+          "3": {"name": "punctuation.definition.tag.xi"},
+          "4": {"name": "beginning.punctuation.definition.quote.markdown.xi"},
+          "5": {"name": "punctuation.definition.tag.xi"},
+          "6": {"name": "punctuation.definition.tag.xi"}
         }
       }]
     },
