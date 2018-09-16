@@ -22,6 +22,15 @@ with dot-space, effectively saving one empty line used in markdown:
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" width="256">
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" width="256">
 
+# Todo
+
+* Support for "header-as-link" link detection and jumps:
+  * "NSButton[] ."
+  * "[cocoa appkit] NSStatusBarButton[] ."
+  * "NSStatusBarButton[] [cocoa appkit] ."
+* Need to somehow implement deep links like "ruby api#Kernel#system" where
+  "system" is a nested header under "Kernel".
+
 # License
 
 The following licensing applies to Xi personal wiki language:
