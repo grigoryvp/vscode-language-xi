@@ -13,27 +13,27 @@ Todo .
 ||| text
 text |||
 text ||| text
-||term||
-text ||term||
-||term|| text
-text ||term|| text
-|term with spaces|
-text |term with spaces| text
+||special||
+text ||special||
+||special|| text
+text ||special|| text
+|special with spaces|
+text |special with spaces| text
 text | text
 text | text |
 text | text | text
-text |{lng:foo}not a term but language| text
-. text |{lng:foo}not a term but language| text
-. |{}term|.
-. |{}| this is term.
+text |{lng:foo}not a special but language| text
+. text |{lng:foo}not a special but language| text
+. |{}special|.
+. |{}| this is special.
 . |||
 . ||| text
-. ||term||
-. ||term|| text
+. ||special||
+. ||special|| text
 . text |||
 . text ||| text
-. text ||term||
-. text ||term|| text
+. text ||special||
+. text ||special|| text
 . |http://foo|
 . |https://foo|
 | code
