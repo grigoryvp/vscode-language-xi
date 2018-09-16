@@ -11,24 +11,27 @@ text
 ||| text
 text |||
 text ||| text
-||special||
-text ||special||
-||special|| text
-text ||special|| text
-|special with spaces|
-text |special with spaces| text
+||term||
+text ||term||
+||term|| text
+text ||term|| text
+|term with spaces|
+text |term with spaces| text
 text | text
 text | text |
 text | text | text
-text |{lng:foo}not a special but language| text
+text |{lng:foo}not a term but language| text
+. text |{lng:foo}not a term but language| text
+. |{}term|.
+. |{}| this is term.
 . |||
 . ||| text
-. ||special||
-. ||special|| text
+. ||term||
+. ||term|| text
 . text |||
 . text ||| text
-. text ||special||
-. text ||special|| text
+. text ||term||
+. text ||term|| text
 . |http://foo|
 . |https://foo|
 | code
@@ -42,7 +45,6 @@ text |{lng:foo}not a special but language| text
   |
 . | {lng:foo} code
 . |not a code
-. text |{lng:foo}not a special but language| text
 ! | code
 ? | code
 . text | not a code
@@ -91,11 +93,13 @@ h1 wikiword link [wikiword] .
           . Paragraph.
 . | dot at end is always paragraph .
 . dot at end is always paragraph $ .
-. |{}| should be '{}' term.
 not a link [] .
 paragraph$ .
 wrong color of following square braces [] .
 wrong header color $ .
 [] .
+. Above is h1.
   [] .
+  . Above is h2.
   | . text .
+  . Above is h3.

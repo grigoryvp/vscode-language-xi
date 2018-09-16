@@ -243,14 +243,14 @@
     "code-inline": {
       "patterns": [{
         "comment": "inline code sample, |{descr}foo|bar|",
-        "match": "\\|\\{[^\\}]*\\}([^ ]*)\\|",
+        "match": "\\|\\{[^\\}]+\\}([^ ]+)\\|",
         "name": "punctuation.definition.tag.xi",
         "captures": {
           "1": {"name": "constant.other.color.rgb-value.xi"}
         }
       }, {
         "comment": "inline code sample, |{descr}foo bar baz|",
-        "match": "\\|\\{[^\\}]*\\}([^\\|]*)\\|",
+        "match": "\\|\\{[^\\}]+\\}([^\\|]+)\\|",
         "name": "punctuation.definition.tag.xi",
         "captures": {
           "1": {"name": "constant.other.color.rgb-value.xi"}
