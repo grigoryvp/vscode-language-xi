@@ -12,26 +12,32 @@
   {
     "comment": "headers"
   }, {
+    "comment": "h1, keyword, tag name",
     "name": "entity.name.function.xi",
     "match": "^[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
+    "comment": "h2, callable",
     "name": "entity.name.class.xi",
     "match": "^ {2}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
+    "comment": "h3, property",
     "name": "constant.character.character-class.regexp.xi",
     "match": "^ {4}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
+    "comment": "h4, type",
     "name": "constant.regexp.xi",
     "match": "^ {6}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
+    "comment": "h5, enum, preprocessor, constant",
     "name": "keyword.control.xi",
     "match": "^ {8}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
   }, {
+    "comment": "h6, number",
     "name": "invalid.xi",
     "match": "^ {10}[^ ].* \\.$",
     "captures": {"0": {"patterns": [{"include": "#header-end"}]}}
@@ -169,12 +175,23 @@
 
     "parameter": {
       "patterns": [{
-        "comment": "{i foo}",
+        "comment": "'{i foo}",
         "match": "(\\{)[a-z] [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
           "2": {"name": "punctuation.definition.tag.xi"}
+        }
+      }, {
+        "comment": "'{i(type) foo}",
+        "match": "(\\{)[a-z](\\()([^\\)]+)(\\)) [^\\}]+(\\})",
+        "name": "constant.other.color.rgb-value.xi",
+        "captures": {
+          "1": {"name": "punctuation.definition.tag.xi"},
+          "2": {"name": "punctuation.definition.tag.xi"},
+          "3": {"name": "constant.character.character-class.regexp.xi"},
+          "4": {"name": "punctuation.definition.tag.xi"},
+          "5": {"name": "punctuation.definition.tag.xi"}
         }
       }]
     },

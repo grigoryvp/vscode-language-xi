@@ -91,6 +91,7 @@ h1 wikiword link [wikiword] .
           . Paragraph.
 . | dot at end is always paragraph .
 . dot at end is always paragraph $ .
+. |{}| should be '{}' term.
 not a link [] .
 paragraph$ .
 wrong color of following square braces [] .
