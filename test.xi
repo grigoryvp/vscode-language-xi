@@ -4,7 +4,8 @@ Todo .
 # Links are not working in this test.
 # '#' list symbol is not working.
 
-text
+. Text with {i input param}, {- cli param}, {i(typed) param}.
+
 |||
 |http://foo|
 |https://foo|

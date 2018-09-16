@@ -176,7 +176,7 @@
     "parameter": {
       "patterns": [{
         "comment": "'{i foo}",
-        "match": "(\\{)[a-z] [^\\}]+(\\})",
+        "match": "(\\{)[a-z\\-] [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
@@ -184,7 +184,7 @@
         }
       }, {
         "comment": "'{i(type) foo}",
-        "match": "(\\{)[a-z](\\()([^\\)]+)(\\)) [^\\}]+(\\})",
+        "match": "(\\{)[a-z\\-](\\()([^\\)]+)(\\)) [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
