@@ -175,6 +175,14 @@
 
     "parameter": {
       "patterns": [{
+        "comment": "'{foo}",
+        "match": "(\\{)[a-z\\-][^ \\(][^\\}]*(\\})",
+        "name": "constant.other.color.rgb-value.xi",
+        "captures": {
+          "1": {"name": "punctuation.definition.tag.xi"},
+          "2": {"name": "punctuation.definition.tag.xi"}
+        }
+      }, {
         "comment": "'{i}",
         "match": "(\\{)([a-z\\-])(\\})",
         "name": "constant.other.color.rgb-value.xi",
