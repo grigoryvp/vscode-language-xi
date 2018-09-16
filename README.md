@@ -24,6 +24,8 @@ with dot-space, effectively saving one empty line used in markdown:
 
 # Todo
 
+* Better jumps, "[python syntax#scope]" should jump to "Scope .", "Scope[] ."
+  etc, but not "scope" in plain text.
 * Support for "header-as-link" link detection and jumps:
   * "NSButton[] ."
   * "[cocoa appkit] NSStatusBarButton[] ."
