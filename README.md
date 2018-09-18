@@ -32,6 +32,7 @@ with dot-space, effectively saving one empty line used in markdown:
   * "NSStatusBarButton[] [cocoa appkit] ."
 * Need to somehow implement deep links like "ruby api#Kernel#system" where
   "system" is a nested header under "Kernel".
+* Outline API support.
 
 # License
 
