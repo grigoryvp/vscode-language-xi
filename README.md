@@ -26,10 +26,10 @@ with dot-space, effectively saving one empty line used in markdown:
 
 * Better jumps, "[python syntax#scope]" should jump to "Scope .", "Scope[] ."
   etc, but not "scope" in plain text.
-* Support for "header-as-link" link detection and jumps:
+* Support for "header-as-link" link detection:
   * "NSButton[] ."
-  * "[cocoa appkit] NSStatusBarButton[] ."
-  * "NSStatusBarButton[] [cocoa appkit] ."
+  * "- [cocoa appkit] NSStatusBarButton[] ."
+  * "- NSStatusBarButton[] [cocoa appkit] ."
 * Need to somehow implement deep links like "ruby api#Kernel#system" where
   "system" is a nested header under "Kernel".
 * Outline API support.

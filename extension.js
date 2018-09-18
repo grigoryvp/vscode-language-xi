@@ -53,8 +53,13 @@ module.exports.activate = function(ctx) {
       vscode.window.showTextDocument(doc).then(editor => {
         if (!anchor) return;
         const text = doc.getText().toLowerCase()
+        const link = `(\\[[^\\]]*\\])?`;
+        const selflink = `(\\[\\])?`;
+        const type = `([^\\s]\\s)?`;
+        const needle = escapeRegExp(anchor);
+        // Search headings like `  * [link] some header[] [another link] .`
         const idx = text.search(new RegExp(`
-          ${escapeRegExp(anchor)}
+          ^\\s*${type}${link}\\s*${needle}${selflink}\\s*${link}\\s\\.$
         `.trim(), 'im'));
         if (idx === -1) return;
         const pos = doc.positionAt(idx);
