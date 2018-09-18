@@ -40,14 +40,15 @@ module.exports.activate = function(ctx) {
 
   ctx.subscriptions.push(regCmd('extension.xi.open', (argmap) => {
     if (!argmap) return;
-    const {file, anchor} = argmap;
+    let {file, anchor} = argmap;
     if (!file) return;
     const uri = vscode.Uri.file(file);
     vscode.workspace.openTextDocument(uri).then(doc => {
       vscode.window.showTextDocument(doc).then(editor => {
         if (!anchor) return;
-        const text = doc.getText();
-        const idx = text.toLowerCase().indexOf(anchor.toLowerCase());
+        anchor = anchor.toLowerCase();
+        const text = doc.getText().toLowerCase()
+        const idx = text.indexOf(anchor);
         if (idx === -1) return;
         const pos = doc.positionAt(idx);
         const range = new vscode.Range(pos, pos);
