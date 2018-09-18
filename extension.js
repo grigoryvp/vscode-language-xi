@@ -5,6 +5,12 @@ const geLinkProvider = require('./get_link_provider.js');
 const HISTORY_KEY = 'file-history';
 
 
+// From MDN
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+
 module.exports.activate = function(ctx) {
   const regProvider = vscode.languages.registerDocumentLinkProvider;
   const LinkProvider = geLinkProvider(vscode);
@@ -40,15 +46,16 @@ module.exports.activate = function(ctx) {
 
   ctx.subscriptions.push(regCmd('extension.xi.open', (argmap) => {
     if (!argmap) return;
-    let {file, anchor} = argmap;
+    const {file, anchor} = argmap;
     if (!file) return;
     const uri = vscode.Uri.file(file);
     vscode.workspace.openTextDocument(uri).then(doc => {
       vscode.window.showTextDocument(doc).then(editor => {
         if (!anchor) return;
-        anchor = anchor.toLowerCase();
         const text = doc.getText().toLowerCase()
-        const idx = text.indexOf(anchor);
+        const idx = text.search(new RegExp(`
+          ${escapeRegExp(anchor)}
+        `.trim(), 'im'));
         if (idx === -1) return;
         const pos = doc.positionAt(idx);
         const range = new vscode.Range(pos, pos);
