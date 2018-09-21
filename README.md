@@ -37,6 +37,8 @@ code samples etc. Such paragrpah layout, used alongside colored headers and
 proper indentation, proved it's worth during my 10 years of using Xi as a
 personal knowledge base.
 
+<img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/paragraph_1.png" width="256">
+
 # Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
