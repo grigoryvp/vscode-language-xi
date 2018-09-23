@@ -22,7 +22,7 @@ with dot-space, effectively saving one empty line used in markdown:
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" width="256">
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" width="256">
 
-# Paragraph
+## Paragraph
 
 Simplest building block of a knowledge base, first paragraph line is prefixed
 with dot-and-space, while each next line is prefixed with two spaces.
@@ -39,7 +39,7 @@ personal knowledge base.
 
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/paragraph_1.png" width="256">
 
-# Heading
+## Heading
 
 Alongside paragraph, heading is a second most used building block for a
 knowledge base. Heading type is denoted by space-dot suffix, while heading
@@ -49,7 +49,7 @@ that are easy to read **and modify**.
 
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/heading_1.png" width="256">
 
-# Todo
+## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
 * Support for "heading-as-link" link detection:
@@ -60,7 +60,7 @@ that are easy to read **and modify**.
   "system" is a nested heading under "Kernel".
 * Outline API support.
 
-# License
+## License
 
 The following licensing applies to Xi personal wiki language:
 Attribution-NonCommercial-NoDerivatives 4.0 International
