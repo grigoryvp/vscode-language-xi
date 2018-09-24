@@ -67,6 +67,9 @@ kh1 .
 h1 link[] .
 h1 local link [#1] .
 h1 wikiword link [wikiword] .
+[wikiword] h1 wikiword link .
+[wikiword] h1 wikiword link [wikiword] .
+[wikiword] h1 wikiword link[] [wikiword] .
 . Paragraph.
   h2 .
   h2 link[] .

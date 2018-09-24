@@ -77,7 +77,9 @@ module.exports = function(vscode) {
       const text = doc.getText();
       const query = (() => {
         const link = `\\[[^\\]]+\\]`;
-        const header = `[^\\[\\r\\n]+`;
+        //  Header can't end with space, ex 'foo [] .': '[]' or ' .' should
+        //  be adjasted to it.
+        const header = `[^\\[\\r\\n]*[^ \\[\\r\\n]`;
         const terminator = `\\s\\.`;
         const begin = `\\s*(?:${link}\\s+)?`;
         const end = `\\[\\](?:\\s+${link})?${terminator}`;

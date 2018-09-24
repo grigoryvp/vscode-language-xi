@@ -52,10 +52,6 @@ that are easy to read **and modify**.
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
-* Support for "heading-as-link" link detection:
-  * "NSButton[] ."
-  * "- [cocoa appkit] NSStatusBarButton[] ."
-  * "- NSStatusBarButton[] [cocoa appkit] ."
 * Need to somehow implement deep links like "ruby api#Kernel#system" where
   "system" is a nested heading under "Kernel".
 * Outline API support.
