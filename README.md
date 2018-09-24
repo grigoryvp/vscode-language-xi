@@ -51,6 +51,7 @@ that are easy to read **and modify**.
 
 ## Todo
 
+* Anchors like [#1] => [1#] support.
 * Correctly catch links within special marks, ex |https://foo|.
 * Need to somehow implement deep links like "ruby api#Kernel#system" where
   "system" is a nested heading under "Kernel".
