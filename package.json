@@ -3,14 +3,13 @@
   "displayName": "Xi markup language",
   "description": "Syntax highlighting and wikiword jumps supoort for Xi markup language",
   "repository": "https://github.com/grigoryvp/vscode-language-xi",
-  "icon": "icon.png",
+  "icon": "https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/icon.png",
   "version": "1.1.24",
   "publisher": "grigoryvp",
   "engines": {
     "vscode": "^1.0.0"
   },
   "categories": [
-    "Languages",
     "Other"
   ],
   "activationEvents": [
