@@ -40,6 +40,50 @@ describe("LinkProvider class", () => {
   });
 
 
+  it("matches simple header link", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "foo[] .";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 0, end: 3}});
+  });
+
+
+  it("matches simple header link with offset", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "  foo[] .";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 2, end: 5}});
+  });
+
+
+  it("matches header link for wikiword at start", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "[foo] bar[] .";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(2);
+    const link = ret[1];
+    expect(link).deep.includes({range: {begin: 6, end: 9}});
+  });
+
+
+  it("matches header link for wikiword at end", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "foo[] [bar] .";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(2);
+    const link = ret[1];
+    expect(link).deep.includes({range: {begin: 0, end: 3}});
+  });
+
+
   it("not matches inside code sample", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();

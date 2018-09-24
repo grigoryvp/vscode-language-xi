@@ -71,20 +71,29 @@ module.exports = function(vscode) {
     }
 
 
-    //  Gather links for header wikiwords like "foo bar[] ."
+    //  Gather links for header wikiwords like "  [foo] bar baz[] [foo] ."
     _getHeaderLinks(doc, cancel) {
       const res = [];
       const text = doc.getText();
-      const query = /^[^\[\r\n]+\[\]\s*\.[\r\n]/gm;
-      var match = query.exec(text);
-      while (match) {
+      const query = (() => {
+        const link = `\\[[^\\]]+\\]`;
+        const header = `[^\\[\\r\\n]+`;
+        const terminator = `\\s\\.`;
+        const begin = `\\s*(?:${link}\\s+)?`;
+        const end = `\\[\\](?:\\s+${link})?${terminator}`;
+        const query = `^(${begin})(${header})(${end})$`;
+        return new RegExp(query, 'gm');
+      })();
+      while (true) {
+        var match = query.exec(text);
+        if (!match) break;
         if (cancel.isCancellationRequested) return [];
-        let beginIdx = match.index;
-        let endIdx = match.index + match[0].length;
-        // Skip indentation at line begin
-        while(beginIdx < text.length - 1 && text[beginIdx] === ' ') beginIdx ++;
-        // Skip '[] .' at end
-        while(endIdx > 0 && text[endIdx] !== '[') endIdx --;
+        //  We have exactly 3 capture groups
+        if (match.length !== 4) continue;
+        //  match[1] is 'begin' query part
+        let beginIdx = match.index + match[1].length;
+        //  match[3] is 'end' query part
+        let endIdx = match.index + match[0].length - match[3].length;
         const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
         const name = text.substr(beginIdx, endIdx - beginIdx);
         const fileName = `${name.replace(/ /g, '_')}.xi`.toLowerCase();
@@ -92,7 +101,6 @@ module.exports = function(vscode) {
         const range = new vscode.Range(begin, end);
         const uri = vscode.Uri.file(path.join(dir, fileName));
         res.push(new vscode.DocumentLink(range, uri));
-        match = query.exec(text);
       }
       return res;
     }
