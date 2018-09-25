@@ -64,6 +64,16 @@ name after `#`. Clicking on the like like `[js api#search]` will try to
 open `js_api.xi` file and scroll to the first `search` hading (that starts
 with spaces and ends with space-dot).
 
+Header links transforms a header into link by adding `[] .` instead of
+space-and-dot. Mostly useful while describing APIs or frameworks with
+complex tree structures where some headers points to articles of their own.
+Header can also start and/or end with wikiword links.
+
+Anchor links starts with `#` and jumps within same document (mostly used for
+"Reference" section at bottom). Anchor target is specified by placing
+`#` as a last symbol of a wikiword link, so clicking on the link `[#1]`
+will jump into a line with `[1#]` anchor.
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
