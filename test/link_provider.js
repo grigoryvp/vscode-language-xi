@@ -10,6 +10,7 @@ describe("LinkProvider class", () => {
     DocumentLink: function(...v) { [this.range, this.uri] = [...v]; },
     Uri: {
       file: (path) => ({path}),
+      parse: (text) => ({text}),
     },
   };
 
@@ -99,5 +100,33 @@ describe("LinkProvider class", () => {
     doc.getText = () => "|foo| |bar| |[baz]|";
     const ret = inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
+  });
+
+
+  it("matches link with anchor", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "[a#b]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 4}});
+    const text = 'command:extension.xi.open?' +
+      '%7B%22file%22%3A%22a.xi%22%2C%22anchor%22%3A%22b%22%7D';
+    expect(link).deep.includes({uri: {text}});
+  });
+
+
+  it("matches link to anchor", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "[#b]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 3}});
+    const text = 'command:extension.xi.open?' +
+      '%7B%22anchor%22%3A%22b%22%7D';
+    expect(link).deep.includes({uri: {text}});
   });
 });
