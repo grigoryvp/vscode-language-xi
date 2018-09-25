@@ -49,9 +49,23 @@ that are easy to read **and modify**.
 
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/heading_1.png" width="256">
 
+## Links
+
+Here Xi starts to differenciate from Markdown. Simple "wikiword" link looks
+like one in Markdown, `[foo]`, but clicking on such link will try to open
+corresponding file, so everything works locally within VSCode. File name
+is created by lowercasing text between square braces, replacing spaces with
+underscores and appending `.xi` suffix. So clicking on the `[foo]` wikiword
+will instruct VSCode to open `foo.xi` in same folder, or ask to create one
+if it does not exist.
+
+Wikiword links with anchors extend this concept by allowing to add heading
+name after `#`. Clicking on the like like `[js api#search]` will try to
+open `js_api.xi` file and scroll to the first `search` hading (that starts
+with spaces and ends with space-dot).
+
 ## Todo
 
-* Anchors like [#1] => [1#] support.
 * Correctly catch links within special marks, ex |https://foo|.
 * Need to somehow implement deep links like "ruby api#Kernel#system" where
   "system" is a nested heading under "Kernel".
