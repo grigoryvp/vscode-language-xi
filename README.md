@@ -59,6 +59,7 @@ underscores and appending `.xi` suffix. So clicking on the `[foo]` wikiword
 will instruct VSCode to open `foo.xi` in same folder, or ask to create one
 if it does not exist.
 
+<!--- 250px 120px -->
 ![wikiword link](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/link_1.png)
 
 Wikiword links with anchors extend this concept by allowing to add heading
@@ -71,10 +72,16 @@ space-and-dot. Mostly useful while describing APIs or frameworks with
 complex tree structures where some headers points to articles of their own.
 Header can also start and/or end with wikiword links.
 
+<!--- 450px 120px -->
+![wikiword link](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/link_2.png)
+
 Anchor links starts with `#` and jumps within same document (mostly used for
 "Reference" section at bottom). Anchor target is specified by placing
 `#` as a last symbol of a wikiword link, so clicking on the link `[#1]`
 will jump into a line with `[1#]` anchor.
+
+<!--- 840px 120px -->
+![wikiword link](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/link_3.png)
 
 ## Todo
 
