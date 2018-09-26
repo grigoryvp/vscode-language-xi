@@ -59,6 +59,8 @@ underscores and appending `.xi` suffix. So clicking on the `[foo]` wikiword
 will instruct VSCode to open `foo.xi` in same folder, or ask to create one
 if it does not exist.
 
+![wikiword link](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/link_1.png)
+
 Wikiword links with anchors extend this concept by allowing to add heading
 name after `#`. Clicking on the like like `[js api#search]` will try to
 open `js_api.xi` file and scroll to the first `search` hading (that starts
