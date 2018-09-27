@@ -83,6 +83,17 @@ will jump into a line with `[1#]` anchor.
 <!--- 840px 120px -->
 ![wikiword link](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/link_3.png)
 
+## Text highlight
+
+Xi supports a number of ways to highligh important parts of text. Pipes are
+used to highlight "special text" which are terms, API method names etc.
+Backticks are used to highlight something important with bright color. Please
+note that if [memory color theme](https://marketplace.visualstudio.com/items?itemName=grigoryvp.memory-theme)
+is used, highlight syntax is dimmed:
+
+<!--- 600px 40px -->
+![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/highlight.png)
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
