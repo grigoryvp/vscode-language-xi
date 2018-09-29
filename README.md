@@ -94,6 +94,19 @@ is used, highlight syntax is dimmed:
 <!--- 600px 40px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/highlight.png)
 
+## Code samples
+
+Xi was created with main goal to keep all my notes about different
+programming languages, framework and APIs I use. It is tailored to
+represent code samples in multiple ways. Most common is "block code sample"
+which is a paragraph (dot-space prefix) that starts with a pipe
+character, followed by meta information inside curly braces. Meta
+syntax is a list of key-value pairs, key separated from value with colon
+and pairs separated from each over with semicolon. I use 'lng' key to
+denote programming language type and file extension as a value. So the
+block code sample for a Python programming language will start with
+`. |{lng:py}`, which will be dimmed out by a syntax highlighter.
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
