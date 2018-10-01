@@ -112,6 +112,12 @@ the pipe in the `|{lng:py}`:
 <!--- 280px 60px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_1.png)
 
+Code sample can be a paragraph of it's own or appear as a part of paragraph
+with text:
+
+<!--- 280px 90px -->
+![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_2.png)
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
