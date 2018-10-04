@@ -118,6 +118,12 @@ with text:
 <!--- 280px 90px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_2.png)
 
+Code sample can also be inlined into a paragraph text by starting code
+right after `{}` meta inormation and terminating code with a pipe:
+
+<!--- 400px 40px -->
+![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_3.png)
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
