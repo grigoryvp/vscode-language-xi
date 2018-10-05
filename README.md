@@ -124,6 +124,18 @@ right after `{}` meta inormation and terminating code with a pipe:
 <!--- 400px 40px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_3.png)
 
+## Named parameters
+
+This Xi feature is more specialized for programming languages. While
+taking notes on APIs it's often required to reference method parameters
+inside of a method description. While this can be done via the text highlight
+feature, doing so will not distinguish parameters among other highlighted
+words. Specialized syntax allows to include named parameter between curled
+braces. In addition, char-space prefix can be added after opening curled
+brace to mark input or output parameters. It's also possible to include
+parameter type wihin round braces after a mark character: all with syntax
+highlighting for a visual navigation.
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
