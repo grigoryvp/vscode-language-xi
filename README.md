@@ -134,7 +134,10 @@ words. Specialized syntax allows to include named parameter between curled
 braces. In addition, char-space prefix can be added after opening curled
 brace to mark input or output parameters. It's also possible to include
 parameter type wihin round braces after a mark character: all with syntax
-highlighting for a visual navigation.
+highlighting for a visual navigation:
+
+<!--- 370px 100px -->
+![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/named_param_1.png)
 
 ## Todo
 
