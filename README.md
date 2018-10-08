@@ -139,6 +139,12 @@ highlighting for a visual navigation:
 <!--- 370px 100px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/named_param_1.png)
 
+## Lists
+
+Like in Markdown, lists in Xi are denoted with `#`, `*` or `-` characters.
+The syntax highlighting is behaviour is same as with paragraphs that start
+with `.` character.
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
