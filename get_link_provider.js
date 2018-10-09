@@ -35,15 +35,17 @@ module.exports = function(vscode) {
           lineBeginIdx --;
         }
         const name = text.substr(beginIdx, endIdx - beginIdx);
+        //  String from line start to link match.
         const prefix = text.substr(lineBeginIdx, match.index - lineBeginIdx);
 
         //  Do not match links in code smaples like `  | [foo]`
         if (prefix.match(/^\s*\|\s+/)) continue;
 
-        let pipeCount = 0;
-        for (const char of prefix) if (char === '|') pipeCount ++;
+        const charBefore = beginIdx > 1 ? text[beginIdx - 2] : null;
+        const charAfter = endIdx < text.length - 1 ? text[endIdx + 1] : null;
         //  Do not match likes inside marked words: `|foo| |bar| |[baz]|`.
-        if (pipeCount % 2) continue;
+        //! Can't rely on pipe count: `||| [foo]`.
+        if (charBefore === '|' && charAfter === '|') continue;
 
         const uri = (() => {
           if (name.startsWith('#')) {

@@ -98,8 +98,15 @@ describe("LinkProvider class", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "|foo| |bar| |[baz]|";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    let ret = inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
+
+    //  Wrong number of pipes before link.
+    doc.getText = () => "||a| [b]";
+    ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 6, end: 7}});
   });
 
 
