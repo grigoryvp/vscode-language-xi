@@ -145,6 +145,9 @@ Like in Markdown, lists in Xi are denoted with `#`, `*` or `-` characters.
 The syntax highlighting is behaviour is same as with paragraphs that start
 with `.` character.
 
+<!--- 380px 120px -->
+![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/list.png)
+
 ## Todo
 
 * Correctly catch links within special marks, ex |https://foo|.
