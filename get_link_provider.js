@@ -13,6 +13,8 @@ module.exports = function(vscode) {
       if (cancel.isCancellationRequested) return [];
       res.push(...this._getHeaderLinks(doc, cancel));
       if (cancel.isCancellationRequested) return [];
+      res.push(...this._getSpecialLinks(doc, cancel));
+      if (cancel.isCancellationRequested) return [];
       return res;
     }
 
@@ -127,6 +129,28 @@ module.exports = function(vscode) {
         const dir = path.dirname(doc.fileName);
         const range = new vscode.Range(begin, end);
         const uri = vscode.Uri.file(path.join(dir, fileName));
+        res.push(new vscode.DocumentLink(range, uri));
+      }
+      return res;
+    }
+
+
+    //  Gather https links inside highlight like "|https://foo.con|"
+    //  (default behavior includes closing '|' in link).
+    _getSpecialLinks(doc, cancel) {
+      const res = [];
+      const text = doc.getText();
+      const query = /\|http(s)?:\/\/[^\|]+\|/gm;
+      while (true) {
+        var match = query.exec(text);
+        if (!match) break;
+        if (cancel.isCancellationRequested) return [];
+        const beginIdx = match.index + 1;
+        const endIdx = match.index + match[0].length - 1;
+        const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
+        const name = text.substr(beginIdx, endIdx - beginIdx);
+        const uri = vscode.Uri.parse(name);
+        const range = new vscode.Range(begin, end);
         res.push(new vscode.DocumentLink(range, uri));
       }
       return res;

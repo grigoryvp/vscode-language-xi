@@ -136,4 +136,16 @@ describe("LinkProvider class", () => {
       '%7B%22anchor%22%3A%22b%22%7D';
     expect(link).deep.includes({uri: {text}});
   });
+
+
+  it("matches http link inside special", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "|http://foo|";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 11}});
+    expect(link).deep.includes({uri: {text: 'http://foo'}});
+  });
 });
