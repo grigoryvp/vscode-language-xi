@@ -118,8 +118,11 @@ describe("LinkProvider class", () => {
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 4}});
-    const text = 'command:extension.xi.open?' +
-      '%7B%22file%22%3A%22a.xi%22%2C%22anchor%22%3A%22b%22%7D';
+    const prefix = 'command:extension.xi.open?';
+    const text = prefix + encodeURIComponent(JSON.stringify({
+      file: "a.xi",
+      anchor: "b",
+    }));
     expect(link).deep.includes({uri: {text}});
   });
 
@@ -132,8 +135,11 @@ describe("LinkProvider class", () => {
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 6}});
-    const text = 'command:extension.xi.open?' +
-      '%7B%22file%22%3A%22a.xi%22%2C%22anchor%22%3A%22b%23c%22%7D';
+    const prefix = 'command:extension.xi.open?';
+    const text = prefix + encodeURIComponent(JSON.stringify({
+      file: "a.xi",
+      anchor: "b#c",
+    }));
     expect(link).deep.includes({uri: {text}});
   });
 
@@ -146,8 +152,10 @@ describe("LinkProvider class", () => {
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 3}});
-    const text = 'command:extension.xi.open?' +
-      '%7B%22anchor%22%3A%22b%22%7D';
+    const prefix = 'command:extension.xi.open?';
+    const text = prefix + encodeURIComponent(JSON.stringify({
+      anchor: "b"
+    }));
     expect(link).deep.includes({uri: {text}});
   });
 
