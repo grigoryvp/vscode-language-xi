@@ -6,18 +6,30 @@ module.exports = function(vscode) {
   }
 
 
+  function jumpToPos(editor, idx) {
+    const pos = editor.document.positionAt(idx);
+    const range = new vscode.Range(pos, pos);
+    editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
+    const selection = new vscode.Selection(pos, pos);
+    editor.selection = selection;
+  }
+
+
   return function(anchor) {
     const editor = vscode.window.activeTextEditor;
     if (!editor) return;
-    const doc = editor.document;
-    const text = doc.getText();
+    const text = editor.document.getText();
+
+    //  Special case, link to same document like [#foo]
+    if (anchor.startsWith('#')) {
+      const idx = text.search(`[${anchor}#]`);
+      if (!idx) return;
+      jumpToPos(editor, idx);
+      return;
+    }
 
     const query = (() => {
       const needle = escapeRegExp(anchor);
-      if (anchor.endsWith('#')) {
-        const query = `\[${needle}\]`;
-        return new RegExp(query, 'im');
-      }
       //! Can't use '\s' since it matches '\n' in multiline mode.
       const link = `(\\[[^\\]]*\\])?`;
       const selflink = `(\\[\\])?`;
@@ -31,10 +43,6 @@ module.exports = function(vscode) {
 
     const match = text.match(query);
     if (!match) return;
-    const pos = doc.positionAt(match.index);
-    const range = new vscode.Range(pos, pos);
-    editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
-    const selection = new vscode.Selection(pos, pos);
-    editor.selection = selection;
+    jumpToPos(editor, match.index);
   }
 }
