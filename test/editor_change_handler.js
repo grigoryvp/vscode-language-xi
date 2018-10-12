@@ -3,7 +3,7 @@ const expect = chai.expect;
 const getHandler = require('./../src/get_editor_change_handler.js');
 
 
-describe("LinkProvider class", () => {
+describe("'active editor changed' handler", () => {
   const state = {};
   const ctx = {
     globalState: {
