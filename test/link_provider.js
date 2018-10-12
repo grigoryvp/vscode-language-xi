@@ -124,6 +124,20 @@ describe("LinkProvider class", () => {
   });
 
 
+  it("matches link with nested anchor", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "[a#b#c]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 6}});
+    const text = 'command:extension.xi.open?' +
+      '%7B%22file%22%3A%22a.xi%22%2C%22anchor%22%3A%22b%23c%22%7D';
+    expect(link).deep.includes({uri: {text}});
+  });
+
+
   it("matches link to anchor", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();

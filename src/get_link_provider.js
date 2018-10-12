@@ -67,7 +67,8 @@ module.exports = function(vscode) {
             return vscode.Uri.parse(name);
           }
           else {
-            const [link, anchor] = name.split('#');
+            const [link, ...anchorSeq] = name.split('#');
+            const anchor = anchorSeq.join('#');
             const fileName = `${link.replace(/ /g, '_')}.xi`;
             const dir = path.dirname(doc.fileName);
             const file = path.join(dir, fileName);
