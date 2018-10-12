@@ -35,7 +35,7 @@ module.exports = function(vscode) {
     else {
       const uri = vscode.Uri.file(file);
       vscode.workspace.openTextDocument(uri).then(doc => {
-        vscode.window.showTextDocument(doc).then(editor => {
+        vscode.window.showTextDocument(doc).then(() => {
           if (!anchor) return;
           const query = (() => {
             const link = `(\\[[^\\]]*\\])?`;
