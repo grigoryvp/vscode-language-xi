@@ -65,7 +65,8 @@ if it does not exist.
 Wikiword links with anchors extend this concept by allowing to add heading
 name after `#`. Clicking on the like like `[js api#search]` will try to
 open `js_api.xi` file and scroll to the first `search` hading (that starts
-with spaces and ends with space-dot).
+with spaces and ends with space-dot). Nested anchors are supported by
+chaining multiple '#' like `[js api#* String#- search]`.
 
 Header links transforms a header into link by adding `[] .` instead of
 space-and-dot. Mostly useful while describing APIs or frameworks with
@@ -150,8 +151,6 @@ with `.` character.
 
 ## Todo
 
-* Need to somehow implement deep links like "ruby api#Kernel#system" where
-  "system" is a nested heading under "Kernel".
 * Outline API support.
 
 ## License
