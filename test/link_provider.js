@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-const getLinkProvider = require('./../get_link_provider.js');
+const getLinkProvider = require('./../src/get_link_provider.js');
 
 
 describe("LinkProvider class", () => {
@@ -138,7 +138,7 @@ describe("LinkProvider class", () => {
   });
 
 
-  it.only("matches http link", () => {
+  it("matches http link", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[http://foo]";

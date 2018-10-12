@@ -20,7 +20,7 @@
     "build": "vsce package",
     "publish": "chrome https://marketplace.visualstudio.com/manage"
   },
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "files": [
     "*.js",
     "xi.tmLanguage.json"
