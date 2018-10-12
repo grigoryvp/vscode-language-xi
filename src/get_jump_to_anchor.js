@@ -29,9 +29,9 @@ module.exports = function(vscode) {
       return new RegExp(query, 'im');
     })();
 
-    const idx = text.search(query);
-    if (idx === -1) return;
-    const pos = doc.positionAt(idx);
+    const match = text.match(query);
+    if (!match) return;
+    const pos = doc.positionAt(match.index);
     const range = new vscode.Range(pos, pos);
     editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
     const selection = new vscode.Selection(pos, pos);
