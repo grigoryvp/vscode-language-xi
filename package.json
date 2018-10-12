@@ -22,7 +22,7 @@
   },
   "main": "./src/extension.js",
   "files": [
-    "*.js",
+    "./src/*.js",
     "xi.tmLanguage.json"
   ],
   "contributes": {
