@@ -22,7 +22,7 @@ describe("jump to anchor", () => {
   };
 
 
-  it("gets document from history", () => {
+  it("jumps to anchor", () => {
     const jumpToAnchor = getJumpToAnchor(vscode);
     vscode.window.activeTextEditor.document.getText = () => {
       return `\nfoo .`;
@@ -31,5 +31,29 @@ describe("jump to anchor", () => {
       expect(range).deep.includes({begin: 1, end: 1});
     }
     jumpToAnchor('foo');
+  });
+
+
+  it("jumps to self document anchor", () => {
+    const jumpToAnchor = getJumpToAnchor(vscode);
+    vscode.window.activeTextEditor.document.getText = () => {
+      return `\n[foo#]`;
+    }
+    vscode.window.activeTextEditor.revealRange = (range) => {
+      expect(range).deep.includes({begin: 2, end: 2});
+    }
+    jumpToAnchor('#foo');
+  });
+
+
+  it("jumps to nested anchor", () => {
+    const jumpToAnchor = getJumpToAnchor(vscode);
+    vscode.window.activeTextEditor.document.getText = () => {
+      return `\nfoo .\n  bar .`;
+    }
+    vscode.window.activeTextEditor.revealRange = (range) => {
+      expect(range).deep.includes({begin: 7, end: 7});
+    }
+    jumpToAnchor('foo#bar');
   });
 });
