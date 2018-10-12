@@ -8,8 +8,8 @@ Todo .
   param, single {i(typed)} param, {param} without i/o modifier.
 
 |||
-|http://foo|
-|https://foo|
+[http://foo]
+[https://foo]
 ||| text
 text |||
 text ||| text
@@ -34,8 +34,8 @@ text |{lng:foo}not a special but language| text
 . text ||| text
 . text ||special||
 . text ||special|| text
-. |http://foo|
-. |https://foo|
+. [http://foo]
+. [https://foo]
 | code
 |{lng:foo} code
 | {lng:foo} code

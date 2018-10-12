@@ -138,10 +138,10 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches http link inside special", () => {
+  it.only("matches http link", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
-    doc.getText = () => "|http://foo|";
+    doc.getText = () => "[http://foo]";
     const ret = inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];

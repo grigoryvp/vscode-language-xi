@@ -150,7 +150,6 @@ with `.` character.
 
 ## Todo
 
-* Correctly catch links within special marks, ex |https://foo|.
 * Need to somehow implement deep links like "ruby api#Kernel#system" where
   "system" is a nested heading under "Kernel".
 * Outline API support.
