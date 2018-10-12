@@ -23,7 +23,7 @@
   "main": "./src/extension.js",
   "files": [
     "./src/*.js",
-    "xi.tmLanguage.json"
+    "./src/*.json"
   ],
   "contributes": {
     "languages": [
@@ -38,7 +38,7 @@
       {
         "language": "xi",
         "scopeName": "text.xi",
-        "path": "./xi.tmLanguage.json"
+        "path": "./src/xi.tmLanguage.json"
       }
     ]
   },
