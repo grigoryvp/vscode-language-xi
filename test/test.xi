@@ -60,6 +60,7 @@ text |{lng:foo}not a special but language| text
 . |{lng:py}a = 1|: inline code after paragraph.
 . |{lng:js}
   | [notlink]
+. | [notlink]
 [jump test]
 [c] - single wikiword.
 kh1 .

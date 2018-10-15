@@ -94,6 +94,15 @@ describe("LinkProvider class", () => {
   });
 
 
+  it("not matches inside paragraph code sample", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => ". | foo [a]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(0);
+  });
+
+
   it("not matches inside marked text", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();

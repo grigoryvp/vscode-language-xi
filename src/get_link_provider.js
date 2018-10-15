@@ -40,6 +40,8 @@ module.exports = function(vscode) {
 
         //  Do not match links in code smaples like `  | [foo]`
         if (prefix.match(/^\s*\|\s+/)) continue;
+        //  Do not match links in code smaples like `. | [foo]`
+        if (prefix.match(/^\s*\. \|\s+/)) continue;
 
         const charBefore = beginIdx > 1 ? text[beginIdx - 2] : null;
         const charAfter = endIdx < text.length - 1 ? text[endIdx + 1] : null;
