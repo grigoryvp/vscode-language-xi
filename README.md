@@ -7,7 +7,9 @@ within a VSCode without a need to "render" it into a "visual" web page
 or PDF. This makes Xi a very **fast** tool to keep records: you grep
 someting, skim through Xi pages, add or change some text from within a same
 editor, without a need to switch between 'edit' and 'previes' modes. An
-example of Xi page from my personal knowledge base with "Memory" color theme:
+example of Xi page from my personal knowledge base with
+[Memory](https://marketplace.visualstudio.com/items?itemName=grigoryvp.memory-theme)
+color theme:
 
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/xi_illustration.png" height="256">
 
