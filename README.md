@@ -153,6 +153,7 @@ with `.` character.
 
 ## Todo
 
+* `[http(s)://...]` links in different color.
 * Outline API support.
 
 ## License
