@@ -153,7 +153,10 @@ with `.` character.
 
 ## Todo
 
-* `[http(s)://...]` links in different color.
+* `[http(s)://...]` links in different color. Maybe change wikiword color so they
+  blend more with article text?
+* A way to search .xi at configurable location without actually adding folder into
+  VSCode workspace.
 * Outline API support.
 
 ## License
