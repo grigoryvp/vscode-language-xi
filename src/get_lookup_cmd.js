@@ -15,7 +15,7 @@ module.exports = function(vscode) {
       return tools.error(tools.TXT_NO_LOOKUP_PATH);
     }
     xiDir = xiDir.replace(/^~/, `${os.homedir()}/`);
-    xiDir = xiDir.replace(/\//g, path.sep);
+    xiDir = xiDir.replace(/[\/\\]/g, path.sep);
     try {
       const stat = await p(fs.stat)(xiDir);
       if (!stat.isDirectory()) {
