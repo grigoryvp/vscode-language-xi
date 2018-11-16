@@ -39,7 +39,10 @@ module.exports = function(vscode) {
         //! Can't use '\s' since it matches '\n' in multiline mode.
         const link = `(\\[[^\\]]*\\])?`;
         const selflink = `(\\[\\])?`;
-        const type = `([^ \\t][ \\t])?`;
+        //  Type for headers that defines something that has a type:
+        //  @ property .
+        //  @(seq) typed-property .
+        const type = `([^ \\t]+[ \\t])?`;
         const begin = `[ \\t]*${type}${link}[ \\t]*`;
         const end = `${selflink}[ \\t]*${link}[ \\t]\\.`;
         const query = `^${begin}${needle}${end}$`;
