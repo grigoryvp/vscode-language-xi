@@ -26,6 +26,29 @@ module.exports = function(vscode) {
       return tools.error(tools.TXT_NOT_DIR, xiDir);
     }
 
-    const res = await vscode.window.showQuickPick(["not implemented"]);
+    let nameSeq = [];
+    try {
+      nameSeq = await p(fs.readdir)(xiDir);
+    }
+    catch (e) {
+      return tools.error(tools.TXT_ERR_READ, xiDir);
+    }
+
+    nameSeq = nameSeq.filter(v => {
+      if (v === '.git') return false;
+      return true;
+    });
+    if (!nameSeq.length) return;
+
+    const name = await vscode.window.showQuickPick(nameSeq);
+    if (!name) return;
+
+    const uri = vscode.Uri.file(path.join(xiDir, name));
+    try {
+      const doc = await vscode.workspace.openTextDocument(uri);
+      await vscode.window.showTextDocument(doc);
+    }
+    catch (e) {
+    }
   }
 }
