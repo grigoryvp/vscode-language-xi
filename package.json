@@ -39,7 +39,18 @@
     "commands": [{
       "command": "extension.xi.lookup",
       "title": "Xi: Look up a .xi file"
-    }]
+    }],
+    "configuration": {
+      "type": "object",
+      "title": "Xi configuration",
+      "properties": {
+        "xi.lookupPath": {
+          "type": "string",
+          "default": null,
+          "description": "Path to a dir with .xi files"
+        }
+      }
+    }
   },
   "devDependencies": {
     "chai": "^4.1.2",
