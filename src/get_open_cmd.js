@@ -1,4 +1,5 @@
 const getJumpToAnchor = require('./get_jump_to_anchor.js');
+const tools = require('./tools.js');
 
 
 module.exports = function(vscode) {
@@ -12,7 +13,7 @@ module.exports = function(vscode) {
     //  Link like [#foo] to [#foo] anchor in same file.
     if (!file && anchor) {
       // jump to anchor like [foo#]
-      jumpToAnchor(`${anchor}#`);
+      jumpToAnchor(`#${anchor}`);
     }
     //  Link like [foo] or [foo#bar].
     else {

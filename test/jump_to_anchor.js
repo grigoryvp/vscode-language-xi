@@ -40,7 +40,7 @@ describe("jump to anchor", () => {
       return `\n[foo#]`;
     }
     vscode.window.activeTextEditor.revealRange = (range) => {
-      expect(range).deep.includes({begin: 2, end: 2});
+      expect(range).deep.includes({begin: 1, end: 1});
     }
     jumpToAnchor('#foo');
   });

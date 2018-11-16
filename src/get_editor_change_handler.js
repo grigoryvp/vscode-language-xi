@@ -1,3 +1,6 @@
+const tools = require('./tools.js');
+
+
 module.exports = function(ctx, key) {
   return function(e) {
     if (!e) return;

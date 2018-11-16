@@ -1,3 +1,5 @@
+const tools = require('./tools.js');
+
 module.exports = function(vscode) {
 
   // From MDN
@@ -22,7 +24,8 @@ module.exports = function(vscode) {
 
     //  Special case, link to same document like [#foo]
     if (anchor.startsWith('#')) {
-      const idx = text.search(`[${anchor}#]`);
+      const query = escapeRegExp(`[${anchor.slice(1)}#]`);
+      const idx = text.search(query);
       if (!idx) return;
       jumpToPos(editor, idx);
       return;
