@@ -13,7 +13,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:xi"
+    "onLanguage:xi",
+    "onCommand:extension.xi.lookup"
   ],
   "scripts": {
     "color-theme": "node --experimental-modules --no-warnings ./color_theme_compatibility/display.mjs",
@@ -26,21 +27,19 @@
     "./src/*.json"
   ],
   "contributes": {
-    "languages": [
-      {
-        "id": "xi",
-        "extensions": [
-          ".xi"
-        ]
-      }
-    ],
-    "grammars": [
-      {
-        "language": "xi",
-        "scopeName": "text.xi",
-        "path": "./src/xi.tmLanguage.json"
-      }
-    ]
+    "languages": [{
+      "id": "xi",
+      "extensions": [".xi"]
+    }],
+    "grammars": [{
+      "language": "xi",
+      "scopeName": "text.xi",
+      "path": "./src/xi.tmLanguage.json"
+    }],
+    "commands": [{
+      "command": "extension.xi.lookup",
+      "title": "Look up .xi file by a name"
+    }]
   },
   "devDependencies": {
     "chai": "^4.1.2",
