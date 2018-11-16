@@ -4,7 +4,7 @@
   "description": "Syntax highlighting and wikiword jumps supoort for Xi markup language",
   "repository": "https://github.com/grigoryvp/vscode-language-xi",
   "icon": "icon.png",
-  "version": "1.5.38",
+  "version": "1.5.39",
   "publisher": "grigoryvp",
   "engines": {
     "vscode": "^1.0.0"
@@ -27,19 +27,27 @@
     "./src/*.json"
   ],
   "contributes": {
-    "languages": [{
-      "id": "xi",
-      "extensions": [".xi"]
-    }],
-    "grammars": [{
-      "language": "xi",
-      "scopeName": "text.xi",
-      "path": "./src/xi.tmLanguage.json"
-    }],
-    "commands": [{
-      "command": "extension.xi.lookup",
-      "title": "Xi: Look up a .xi file"
-    }],
+    "languages": [
+      {
+        "id": "xi",
+        "extensions": [
+          ".xi"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "xi",
+        "scopeName": "text.xi",
+        "path": "./src/xi.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.xi.lookup",
+        "title": "Xi: Look up a .xi file"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "Xi configuration",
