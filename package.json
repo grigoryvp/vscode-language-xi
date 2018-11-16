@@ -38,7 +38,7 @@
     }],
     "commands": [{
       "command": "extension.xi.lookup",
-      "title": "Look up .xi file by a name"
+      "title": "Xi: Look up a .xi file"
     }]
   },
   "devDependencies": {
