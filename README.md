@@ -24,6 +24,19 @@ with dot-space, effectively saving one empty line used in markdown:
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" width="256">
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" width="256">
 
+Extension provides a single command **extension.xi.lookup** that is binded
+to the **ctrl+k x** by default. This command brings file search for the
+directory with xi files, which is **~/.xi** by default and can be changed
+via the **xi.lookupPath** configuration option. It assumes workflow where if
+you are in any VSCode project and want to consult your personal knowledge
+base or add something to it, you hit "ctrl+k x", enter part of file name
+and open corresponding file for read and update. For example, writing some
+Python source code you want to remind yourself about API nuances. You
+know, that you store programming languages API records in files named
+"language_api.xi", so you hit "ctrl+k x", enter "python_a" that narrows
+search to "python_api.xi", hit enter, open file, check your notes and
+return to your code.
+
 ## Paragraph
 
 Simplest building block of a knowledge base, first paragraph line is prefixed
