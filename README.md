@@ -118,7 +118,7 @@ represent code samples in multiple ways. Most common is "block code sample"
 which is a paragraph (dot-space prefix) that starts with a pipe
 character, followed by meta information inside curly braces. Meta
 syntax is a list of key-value pairs, key separated from value with colon
-and pairs separated from each over with semicolon. I use 'lng' key to
+and pairs separated from each other with semicolon. I use 'lng' key to
 denote programming language type and file extension as a value. So the
 block code sample for a Python programming language will start with
 `. |{lng:py}`, which will be dimmed out by a syntax highlighter. Each line
