@@ -158,7 +158,7 @@ highlighting for a visual navigation:
 ## Lists
 
 Like in Markdown, lists in Xi are denoted with `#`, `*` or `-` characters.
-The syntax highlighting is behaviour is same as with paragraphs that start
+The syntax highlighting is behaviour is the same as with paragraphs that start
 with `.` character.
 
 <!--- 380px 120px -->
