@@ -48,7 +48,7 @@ of vertical space, which is vital for documenting software-related things
 like programming lanugae syntax, APIs, frameworks etc. We tend to have
 short paragraphs that do not tend to follow each other, but tend to form
 a really complex nested strucure with lots of headings, meta information,
-code samples etc. Such paragrpah layout, used alongside colored headings and
+code samples etc. Such paragraph layout, used alongside colored headings and
 proper indentation, proved it's worth during my 10 years of using Xi as a
 personal knowledge base.
 
