@@ -48,7 +48,7 @@ of vertical space, which is vital for documenting software-related things
 like programming lanugae syntax, APIs, frameworks etc. We tend to have
 short paragraphs that do not tend to follow each other, but tend to form
 a really complex nested strucure with lots of headings, meta information,
-code samples etc. Such paragrpah layout, used alongside colored headings and
+code samples etc. Such paragrapah layout, used alongside colored headings and
 proper indentation, proved it's worth during my 10 years of using Xi as a
 personal knowledge base.
 
@@ -117,13 +117,13 @@ programming languages, framework and APIs I use. It is tailored to
 represent code samples in multiple ways. Most common is "block code sample"
 which is a paragraph (dot-space prefix) that starts with a pipe
 character, followed by meta information inside curly braces. Meta
-syntax is a list of key-value pairs, key separated from value with colon
-and pairs separated from each over with semicolon. I use 'lng' key to
-denote programming language type and file extension as a value. So the
-block code sample for a Python programming language will start with
-`. |{lng:py}`, which will be dimmed out by a syntax highlighter. Each line
-of the sample is prefixed with a pipe, indented to match the position of
-the pipe in the `|{lng:py}`:
+syntax is a list of key-value pairs, a key separated from a value with the
+colon character and pairs separated from each other with the semicolon
+character. I use the 'lng' key to denote a programming language type, with
+a file extension as a value. So the block code sample for a Python
+programming language will start with `. |{lng:py}`, which will be dimmed
+out by a syntax highlighter. Each line of the sample is prefixed with a
+pipe, indented to match the position of the pipe in the `|{lng:py}`:
 
 <!--- 280px 60px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_1.png)
@@ -158,8 +158,8 @@ highlighting for a visual navigation:
 ## Lists
 
 Like in Markdown, lists in Xi are denoted with `#`, `*` or `-` characters.
-The syntax highlighting is behaviour is same as with paragraphs that start
-with `.` character.
+The syntax highlighting behaviour is the same as with paragraphs (that start
+with the `.` character).
 
 <!--- 380px 120px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/list.png)
