@@ -13,6 +13,15 @@ color theme:
 
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/xi_illustration.png" height="256">
 
+## VSCode extension installation guide
+
+This extension is published to the "Extension Marketplace". To install it,
+click on the "Extensions" icon in the Activity Bar on the side of VSCode
+and enter "Xi markup language" in the search field. Click on the "install"
+button near the extension listed in the search results.
+
+## General
+
 Example below shows a simple markdown syntax with nested headings and
 paragraphs. With Xi, heading is marked with indentation and tail space-dot
 instead of indentation. So, heading 2 in markdown that is '## Heading 2'
@@ -154,6 +163,11 @@ highlighting for a visual navigation:
 
 <!--- 370px 100px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/named_param_1.png)
+
+Usage example:
+
+<!--- 822px 79px -->
+![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/named_param_2.png)
 
 ## Lists
 
