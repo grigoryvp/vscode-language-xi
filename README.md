@@ -164,7 +164,8 @@ highlighting for a visual navigation:
 <!--- 370px 100px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/named_param_1.png)
 
-Usage example:
+Usage example that describes an "insert" method that takes two named and
+positional parameters, "indice" and "item".
 
 <!--- 822px 79px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/named_param_2.png)
