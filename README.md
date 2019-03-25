@@ -11,6 +11,7 @@ example of Xi page from my personal knowledge base with
 [Memory](https://marketplace.visualstudio.com/items?itemName=grigoryvp.memory-theme)
 color theme:
 
+<!--- 1000px 510px -->
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/xi_illustration.png" height="256">
 
 ## VSCode extension installation guide
