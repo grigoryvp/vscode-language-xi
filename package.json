@@ -4,7 +4,7 @@
   "description": "Syntax highlighting and wikiword jumps supoort for Xi markup language",
   "repository": "https://github.com/grigoryvp/vscode-language-xi",
   "icon": "icon.png",
-  "version": "1.5.43",
+  "version": "1.5.44",
   "publisher": "grigoryvp",
   "engines": {
     "vscode": "^1.0.0"
@@ -59,16 +59,18 @@
         }
       }
     },
-    "keybindings": [{
-      "command": "extension.xi.lookup",
-      "key": "ctrl+k x",
-      "mac": "cmd+k x"
-    }]
+    "keybindings": [
+      {
+        "command": "extension.xi.lookup",
+        "key": "ctrl+k x",
+        "mac": "cmd+k x"
+      }
+    ]
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "chalk": "^2.4.1",
+    "chai": "^4.2.0",
+    "chalk": "^2.4.2",
     "mocha": "^5.2.0",
-    "vsce": "^1.49.2"
+    "vsce": "^1.59.0"
   }
 }
