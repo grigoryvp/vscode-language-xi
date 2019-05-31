@@ -47,6 +47,9 @@ know, that you store programming languages API records in files named
 search to "python_api.xi", hit enter, open file, check your notes and
 return to your code.
 
+Wikiwords and links are marked as VSCode "links" and can be opened via
+standard VSCode means, for example the **editor.action.openLink** keybinding.
+
 ## Paragraph
 
 Simplest building block of a knowledge base, first paragraph line is prefixed
