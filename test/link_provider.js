@@ -179,4 +179,20 @@ describe("LinkProvider class", () => {
     expect(link).deep.includes({range: {begin: 1, end: 11}});
     expect(link).deep.includes({uri: {text: 'http://foo'}});
   });
+
+  it("matches link anchors with slashes", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "[a#b/#c/]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 8}});
+    const prefix = 'command:extension.xi.open?';
+    const text = prefix + encodeURIComponent(JSON.stringify({
+      file: "a.xi",
+      anchor: "b/#c/",
+    }));
+    expect(link).deep.includes({uri: {text}});
+  });
 });
