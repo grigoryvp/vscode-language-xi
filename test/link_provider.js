@@ -85,6 +85,34 @@ describe("LinkProvider class", () => {
   });
 
 
+  it("matches header link to anchor", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "#foo[] .";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 0, end: 4}});
+    const prefix = 'command:extension.xi.open?';
+    const text = prefix + encodeURIComponent(JSON.stringify({
+      anchor: "foo",
+    }));
+    expect(link).deep.includes({uri: {text}});
+  });
+
+
+  it("matches header link to url", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "http://foo[] .";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 0, end: 10}});
+    expect(link).deep.includes({uri: {text: 'http://foo'}});
+  });
+
+
   it("not matches inside code sample", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
