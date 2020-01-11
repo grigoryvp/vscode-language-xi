@@ -1,7 +1,7 @@
 xi test @
 
 Todo .
-#Todo[] .
+#todo[] .
 # Links are not working in this test.
 # '#' list symbol is not working.
 
@@ -10,6 +10,7 @@ Todo .
 
 |||
 [http://foo]
+http://foo[] .
 [https://foo]
 ||| text
 text |||
@@ -109,4 +110,4 @@ wrong header color $ .
   . Above is h2.
   | . text .
   . Above is h3.
-. [#todo] anchor.
+. [todo#] anchor.

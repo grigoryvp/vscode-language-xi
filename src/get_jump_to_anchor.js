@@ -18,9 +18,10 @@ module.exports = function(vscode) {
 
 
   return function(anchor) {
+    anchor = anchor.toLowerCase();
     const editor = vscode.window.activeTextEditor;
     if (!editor) return;
-    let text = editor.document.getText();
+    let text = editor.document.getText().toLowerCase();
 
     //  Special case, link to same document like [#foo]
     if (anchor.startsWith('#')) {
@@ -32,6 +33,7 @@ module.exports = function(vscode) {
     }
 
     let lastFoundIdx = null;
+    let lastFoundSize = 0;
     //  Handle nested anchor like [foo#bar#baz]
     for (const fragment of anchor.split('#')) {
       const query = (() => {
@@ -42,7 +44,7 @@ module.exports = function(vscode) {
         //  Type for headers that defines something that has a type:
         //  @ property .
         //  @(seq) typed-property .
-        const type = `([^ \\t]+[ \\t])?`;
+        const type = `([^ \\t\\n]+[ \\t])?`;
         const begin = `[ \\t]*${type}${link}[ \\t]*`;
         const end = `${selflink}[ \\t]*${link}[ \\t]\\.`;
         const query = `^${begin}${needle}${end}$`;
@@ -52,17 +54,20 @@ module.exports = function(vscode) {
 
       const match = text.match(query);
       //  Break on first not found and use last found index, if any.
-      if (!match) return;
+      if (!match) break;
+
       if (!lastFoundIdx) {
         lastFoundIdx = match.index;
       }
       else {
-        //  We are searching reminaing text, so it's a relative index.
-        lastFoundIdx += match.index;
+        //  We are searching remainaing text, so it's a relative index.
+        lastFoundIdx += lastFoundSize + match.index;
       }
 
       //  Remaining text.
-      text = text.slice(lastFoundIdx);
+      lastFoundSize = match[0].length;
+      text = text.slice(match.index + lastFoundSize);
+
     }
 
     if (lastFoundIdx) {
