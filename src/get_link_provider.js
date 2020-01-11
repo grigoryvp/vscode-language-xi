@@ -104,6 +104,7 @@ module.exports = function(vscode) {
 
 
     //  Gather links for header wikiwords like "  [foo] bar baz[] [foo] ."
+    //  This also includes header anchor links like #todo[]
     _getHeaderLinks(doc, cancel) {
       const res = [];
       const text = doc.getText();
@@ -128,13 +129,19 @@ module.exports = function(vscode) {
         let beginIdx = match.index + match[1].length;
         //  match[3] is 'end' query part
         let endIdx = match.index + match[0].length - match[3].length;
-        const [begin, end] = [beginIdx, endIdx].map(v => doc.positionAt(v));
         const name = text.substr(beginIdx, endIdx - beginIdx);
-        const fileName = `${name.replace(/ /g, '_')}.xi`.toLowerCase();
-        const dir = path.dirname(doc.fileName);
-        const range = new vscode.Range(begin, end);
-        const uri = vscode.Uri.file(path.join(dir, fileName));
-        res.push(new vscode.DocumentLink(range, uri));
+
+        const uri = (() => {
+          const fileName = `${name.replace(/ /g, '_')}.xi`.toLowerCase();
+          const dir = path.dirname(doc.fileName);
+          return vscode.Uri.file(path.join(dir, fileName));
+        })();
+        if (uri) {
+          const toPosition = (v) => doc.positionAt(v);
+          const [begin, end] = [beginIdx, endIdx].map(toPosition);
+          const range = new vscode.Range(begin, end);
+          res.push(new vscode.DocumentLink(range, uri));
+        }
       }
       return res;
     }
