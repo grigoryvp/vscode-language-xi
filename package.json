@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "color-theme": "node --experimental-modules --no-warnings ./color_theme_compatibility/display.mjs",
-    "build": "vsce package",
+    "build": "vsce package --out ./out/extension.vsix",
     "publish": "chrome https://marketplace.visualstudio.com/manage"
   },
   "main": "./src/extension.js",
@@ -72,7 +72,7 @@
     "@types/chai": "^4.2.7",
     "chai": "^4.2.0",
     "chalk": "^3.0.0",
-    "mocha": "^6.2.2",
-    "vsce": "^1.69.0"
+    "mocha": "^7.0.0",
+    "vsce": "^1.71.0"
   }
 }
