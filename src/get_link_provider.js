@@ -18,6 +18,51 @@ module.exports = function(vscode) {
     }
 
 
+    //  Give link name inside [], like "foo#bar" evaluates to vscode.Uri
+    //  or null.
+    _linkNameToVSCodeURI(doc, name) {
+      if (name.startsWith('#')) {
+        const anchor = name.slice(1).trim();
+        if (anchor.length) {
+          return vscode.Uri.parse(`command:extension.xi.open?${
+            encodeURIComponent(JSON.stringify({
+              //  Without file it's not header anchor, but a wikiword.
+              anchor,
+            }))
+          }`);
+        }
+        else {
+          //  [#] or #[] is meaningless
+          return null;
+        }
+      }
+      else if (name.match(/^http(s)?:\/\//)) {
+        return vscode.Uri.parse(name);
+      }
+      else {
+        const [link, ...anchorSeq] = name.split('#');
+        const anchor = anchorSeq.join('#');
+        const fileName = `${link.replace(/ /g, '_')}.xi`;
+        const dir = path.dirname(doc.fileName);
+        const file = path.join(dir, fileName);
+        if (anchor) {
+          return vscode.Uri.parse(`command:extension.xi.open?${
+            encodeURIComponent(JSON.stringify({
+              file,
+              anchor
+            }))
+          }`);
+        }
+        else {
+          //  If no anchor like [foo#bar] or foo#bar[] is specified, use
+          //  normal file //  uri so VSCode will ask to create a file if
+          //  it does not exists.
+          return vscode.Uri.file(file);
+        }
+      }
+    }
+
+
     //  Gather links for simple wikiwords like "[foo#bar]"
     _getWikiwordLinks(doc, cancel) {
       const res = [];
@@ -50,48 +95,7 @@ module.exports = function(vscode) {
         //! Can't rely on pipe count: `||| [foo]`.
         if (charBefore === '|' && charAfter === '|') continue;
 
-        const uri = (() => {
-          if (name.startsWith('#')) {
-            const anchor = name.slice(1).trim();
-            if (anchor.length) {
-              return vscode.Uri.parse(`command:extension.xi.open?${
-                encodeURIComponent(JSON.stringify({
-                  //  Without file it's not header anchor, but a wikiword.
-                  anchor,
-                }))
-              }`);
-            }
-            else {
-              //  [#] is meaningless
-              return null;
-            }
-          }
-          else if (name.match(/^http(s)?:\/\//)) {
-            return vscode.Uri.parse(name);
-          }
-          else {
-            const [link, ...anchorSeq] = name.split('#');
-            const anchor = anchorSeq.join('#');
-            const fileName = `${link.replace(/ /g, '_')}.xi`;
-            const dir = path.dirname(doc.fileName);
-            const file = path.join(dir, fileName);
-            if (anchor) {
-              return vscode.Uri.parse(`command:extension.xi.open?${
-                encodeURIComponent(JSON.stringify({
-                  file,
-                  anchor
-                }))
-              }`);
-            }
-            else {
-              //  If no anchor like [foo#bar] is specified, use normal file
-              //  uri so VSCode will ask to create a file if it does not
-              //  exists.
-              return vscode.Uri.file(file);
-            }
-          }
-        })();
-
+        const uri = this._linkNameToVSCodeURI(doc, name);
         if (uri) {
           const toPosition = (v) => doc.positionAt(v);
           const [begin, end] = [beginIdx, endIdx].map(toPosition);
@@ -131,47 +135,7 @@ module.exports = function(vscode) {
         let endIdx = match.index + match[0].length - match[3].length;
         const name = text.substr(beginIdx, endIdx - beginIdx);
 
-        const uri = (() => {
-          if (name.startsWith('#')) {
-            const anchor = name.slice(1).trim();
-            if (anchor.length) {
-              return vscode.Uri.parse(`command:extension.xi.open?${
-                encodeURIComponent(JSON.stringify({
-                  //  Without file it's not header anchor, but a wikiword.
-                  anchor,
-                }))
-              }`);
-            }
-            else {
-              //  #[] is meaningless
-              return null;
-            }
-          }
-          else if (name.match(/^http(s)?:\/\//)) {
-            return vscode.Uri.parse(name);
-          }
-          else {
-            const [link, ...anchorSeq] = name.split('#');
-            const anchor = anchorSeq.join('#');
-            const fileName = `${link.replace(/ /g, '_')}.xi`;
-            const dir = path.dirname(doc.fileName);
-            const file = path.join(dir, fileName);
-            if (anchor) {
-              return vscode.Uri.parse(`command:extension.xi.open?${
-                encodeURIComponent(JSON.stringify({
-                  file,
-                  anchor
-                }))
-              }`);
-            }
-            else {
-              //  If no anchor like foo#bar[] is specified, use normal file
-              //  uri so VSCode will ask to create a file if it does not
-              //  exists.
-              return vscode.Uri.file(file);
-            }
-          }
-        })();
+        const uri = this._linkNameToVSCodeURI(doc, name)
         if (uri) {
           const toPosition = (v) => doc.positionAt(v);
           const [begin, end] = [beginIdx, endIdx].map(toPosition);
