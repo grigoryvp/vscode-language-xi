@@ -1,7 +1,7 @@
 # Xi personal wiki language
 
 "Xi" is a markdown-like language designed for a personal knowledge base.
-Color and indentation is used to highlight headings, paragraphs, links,
+Color and indentation are used to highlight headings, paragraphs, links,
 source code examples and definitions. You can read and write Xi from
 within a VSCode without a need to "render" it into a "visual" web page
 or PDF. This makes Xi a very **fast** tool to keep records: you grep
