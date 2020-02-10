@@ -23,7 +23,7 @@ button near the extension listed in the search results.
 
 ## General
 
-Example below shows a simple markdown syntax with nested headings and
+The example below shows a simple markdown syntax with nested headings and
 paragraphs. With Xi, heading is marked with indentation and tail space-dot
 instead of indentation. So, heading 2 in markdown that is '## Heading 2'
 becomes '  Heading 2 .' in Xi (tail space-dot defines that it's a heading
