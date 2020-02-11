@@ -34,7 +34,7 @@ with dot-space, effectively saving one empty line used in markdown:
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_src.png" width="256">
 <img src="https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/md_to_xi_dst.png" width="256">
 
-Extension provides a single command **extension.xi.lookup** that is binded
+The extension provides a single command **extension.xi.lookup** that is binded
 to the **ctrl+k x** by default. This command brings file search for the
 directory with xi files, which is **~/.xi** by default and can be changed
 via the **xi.lookupPath** configuration option. It assumes workflow where if
