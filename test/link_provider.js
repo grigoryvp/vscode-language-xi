@@ -223,4 +223,12 @@ describe("LinkProvider class", () => {
     }));
     expect(link).deep.includes({uri: {text}});
   });
+
+  it("not matches between marked text", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "|[| |]]|";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(0);
+  });
 });

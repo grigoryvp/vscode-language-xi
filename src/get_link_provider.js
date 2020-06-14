@@ -88,10 +88,13 @@ module.exports = function(vscode) {
         if (prefix.match(/^\s*\|\s+/)) continue;
         //  Do not match links in code smaples like `. | [foo]`
         if (prefix.match(/^\s*\. \|\s+/)) continue;
+        //  Do not match links that contain '|', most probably it's
+        //  something like "|[| |]]|"
+        if (name.includes('|')) continue;
 
         const charBefore = beginIdx > 1 ? text[beginIdx - 2] : null;
         const charAfter = endIdx < text.length - 1 ? text[endIdx + 1] : null;
-        //  Do not match likes inside marked words: `|foo| |bar| |[baz]|`.
+        //  Do not match links inside marked words: `|foo| |bar| |[baz]|`.
         //! Can't rely on pipe count: `||| [foo]`.
         if (charBefore === '|' && charAfter === '|') continue;
 
