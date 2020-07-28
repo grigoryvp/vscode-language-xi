@@ -42,7 +42,10 @@ module.exports = function(vscode) {
       else {
         const [link, ...anchorSeq] = name.split('#');
         const anchor = anchorSeq.join('#');
-        const fileName = `${link.replace(/ /g, '_')}.xi`;
+        //  Always use lowercase since different wikiwords can have
+        //  different writing depending on context, ex capitalized at
+        //  the sentence start.
+        const fileName = `${link.replace(/ /g, '_')}.xi`.toLowerCase();
         const dir = path.dirname(doc.fileName);
         const file = path.join(dir, fileName);
         if (anchor) {

@@ -38,8 +38,19 @@ describe("LinkProvider class", () => {
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 2}});
-    const prefix = 'command:extension.xi.open?';
     expect(link).deep.includes({uri: {path: "a.xi"}});
+  });
+
+
+  it("lowercase file names for links", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "[Ab]";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(1);
+    const link = ret[0];
+    expect(link).deep.includes({range: {begin: 1, end: 3}});
+    expect(link).deep.includes({uri: {path: "ab.xi"}});
   });
 
 
