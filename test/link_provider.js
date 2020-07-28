@@ -38,6 +38,8 @@ describe("LinkProvider class", () => {
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 2}});
+    const prefix = 'command:extension.xi.open?';
+    expect(link).deep.includes({uri: {path: "a.xi"}});
   });
 
 
