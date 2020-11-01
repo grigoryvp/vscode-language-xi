@@ -26,7 +26,7 @@ describe("LinkProvider class", () => {
   it("can be instantiated", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
-    chai.assert(inst);
+    expect(inst).to.be.ok;
   });
 
 
