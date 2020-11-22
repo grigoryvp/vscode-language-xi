@@ -5,6 +5,7 @@ module.exports = function(vscode) {
 
 
     provideFoldingRanges(doc, context, token) {
+      // return [vscode.FoldingRange(0, 10, vscode.FoldingRangeKind.Region)];
       return [];
     }
   }

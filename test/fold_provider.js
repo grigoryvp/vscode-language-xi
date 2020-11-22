@@ -6,6 +6,10 @@ const getFoldProvider = require('./../src/get_fold_provider.js');
 describe("FoldProvider class", () => {
 
   const vscode = {
+    FoldingRange: (start, end, kind) => {start, end, kind},
+    FoldingRangeKind: {
+      Region: 3,
+    },
   };
 
 
