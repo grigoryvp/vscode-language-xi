@@ -1,6 +1,6 @@
 xi = header / paragraph
 
-header = text end_of_header
+header = indent text end_of_header
 
 end_of_header = " ." EOS
 
