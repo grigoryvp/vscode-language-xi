@@ -98,8 +98,8 @@ h1 wikiword link [wikiword] .
           h5 local link [#1] .
           h6 wikiword link [wikiword] .
           . Paragraph.
-. | dot at end is always paragraph .
-. dot at end is always paragraph $ .
+. | dot at end is always header .
+. dot at end is always header $ .
 not a link [] .
 paragraph$ .
 wrong color of following square braces [] .
