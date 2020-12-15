@@ -23,7 +23,13 @@ describe("Xi grammar parsing", () => {
   });
 
 
-  it("tokenizer returns iterable of tokens", async () => {
+  it("tokenisez input", async () => {
     parser.tokenize(_sample, _cancel).exist;
+  });
+
+
+  it("finds begin mark token", async () => {
+    tokens = parser.tokenize("  . foo", _cancel);
+    expect(tokens).length.equal(2);
   });
 });

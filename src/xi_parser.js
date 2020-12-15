@@ -109,4 +109,5 @@ function tokenize(text, cancel) {
 module.exports = {
   parse,
   tokenize,
+  Token,
 };
