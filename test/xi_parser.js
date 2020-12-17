@@ -28,7 +28,7 @@ describe("Xi grammar parsing", () => {
   });
 
 
-  it("finds begin mark token", async () => {
+  it.only("finds begin mark token", async () => {
     tokens = parser.tokenize("  . foo", _cancel);
     expect(tokens).length.equal(2);
   });

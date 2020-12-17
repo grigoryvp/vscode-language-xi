@@ -1,10 +1,16 @@
 {
   "configurations": [{
-    "name": "Run Extension",
+    "name": "Debug extension",
     "type": "extensionHost",
     "request": "launch",
     "args": [
       "--extensionDevelopmentPath=${workspaceFolder}"
     ]
+  }, {
+    "name": "Debug test(s)",
+    "type": "node",
+    "request": "launch",
+    "runtimeExecutable": "npm",
+    "runtimeArgs": ["exec", "mocha"]
   }]
 }
