@@ -28,6 +28,7 @@ class Token {
 function tokenize(text, cancel) {
   const STR_BEGIN = 2;
   const STR_INDENT = 3;
+  //  2 * space followed by dot, waiting for space
   const STR_BEGIN_MARK = 4;
   const TEXT = 5;
   let mode = STR_BEGIN;
@@ -41,7 +42,7 @@ function tokenize(text, cancel) {
       if (acc.length) {
           token = new Token();
           token.text = acc;
-          token.pos = pos - acc.length;
+          token.pos = (pos - 1) - (acc.length - 1);
           token.type = Token.TEXT;
           tokens.push(token);
       }
@@ -50,16 +51,17 @@ function tokenize(text, cancel) {
     const char = text[pos];
     switch(char) {
       case " ":
-        acc += char
+        acc += char;
         switch(mode) {
           case STR_BEGIN:
-            //  If string starts with spaces it can be a paragraph indent.
+          case STR_INDENT:
+            //  If string starts with spaces it can be a paragraph indent
             mode = STR_INDENT;
             break;
           case STR_BEGIN_MARK:
             token = new Token();
             token.text = acc;
-            token.pos = pos - acc.length;
+            token.pos = pos - (acc.length - 1);
             token.type = Token.BEGIN_MARK;
             tokens.push(token);
             acc = "";
@@ -69,12 +71,13 @@ function tokenize(text, cancel) {
             mode = TEXT;
             break;
         }
+        break;
       case ".":
-        acc += char
+        acc += char;
         switch(mode) {
           case STR_INDENT:
-            if (acc.length % 2 == 0) {
-              // 2 * space followed by dot and space is paragraph begin mark.
+            indentLen = acc.length - 1;
+            if (indentLen % 2 == 0) {
               mode = STR_BEGIN_MARK;
             }
             else {
@@ -85,12 +88,13 @@ function tokenize(text, cancel) {
             mode = TEXT;
             break;
         }
+        break;
       case "\r":
       case "\n":
         if (acc.length) {
             token = new Token();
             token.text = acc;
-            token.pos = pos - acc.length;
+            token.pos = pos - (acc.length - 1);
             token.type = Token.TEXT;
             tokens.push(token);
         }
@@ -98,6 +102,7 @@ function tokenize(text, cancel) {
         acc = "";
         break;
       default:
+        acc += char;
         break;
     }
   }

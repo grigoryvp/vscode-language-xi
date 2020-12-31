@@ -28,8 +28,10 @@ describe("Xi grammar parsing", () => {
   });
 
 
-  it.only("finds begin mark token", async () => {
+  it("finds begin mark token", async () => {
     tokens = parser.tokenize("  . foo", _cancel);
-    expect(tokens).length.equal(2);
+    expect(tokens).length(2);
+    expect(tokens[0]).contains({type: parser.Token.BEGIN_MARK, pos: 0});
+    expect(tokens[1]).contains({type: parser.Token.TEXT, pos: 4});
   });
 });
