@@ -34,4 +34,12 @@ describe("Xi grammar parsing", () => {
     expect(tokens[0]).contains({type: parser.Token.BEGIN_MARK, pos: 0});
     expect(tokens[1]).contains({type: parser.Token.TEXT, pos: 4});
   });
+
+
+  it.only("finds end mark token", async () => {
+    tokens = parser.tokenize("foo .", _cancel);
+    expect(tokens).length(2);
+    expect(tokens[0]).contains({type: parser.Token.TEXT, pos: 0});
+    expect(tokens[1]).contains({type: parser.Token.END_MARK, pos: 3});
+  });
 });
