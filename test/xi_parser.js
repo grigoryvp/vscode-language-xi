@@ -51,4 +51,13 @@ describe("Xi grammar parsing", () => {
     expect(tokens[0]).contains({type: parser.Token.TEXT, pos: 2});
     expect(tokens[1]).contains({type: parser.Token.END_MARK, pos: 5});
   });
+
+
+  it.only("has indent info for begin mark", async () => {
+    tokens = parser.tokenize("  . foo", _cancel);
+    expect(tokens).length(3);
+    expect(tokens[0]).contains({type: parser.Token.INDENT, pos: 0});
+    expect(tokens[0]).contains({type: parser.Token.BEGIN_MARK, pos: 2});
+    expect(tokens[0]).contains({type: parser.Token.TEXT, pos: 4});
+  });
 });
