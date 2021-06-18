@@ -183,6 +183,11 @@ with the `.` character).
 <!--- 380px 120px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/list.png)
 
+## Examples
+
+* [Lua syntax](https://github.com/grigoryvp/vscode-language-xi/tree/master/examples/lua_syntax.xi)
+* [Neurophysiology article](https://github.com/grigoryvp/vscode-language-xi/tree/master/examples/neurotransmitter.xi)
+
 ## Todo
 
 * Re-take all screenshots.
