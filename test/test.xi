@@ -7,6 +7,7 @@ Todo .
 
 . Text with {i input param}, {- cli param}, {i(typed) param}, {i} single
   param, single {i(typed)} param, {param} without i/o modifier.
+  {Upper-case param}.
 
 |||
 [http://foo]
@@ -39,12 +40,12 @@ text |{lng:foo}not a special but language| text
 . [http://foo]
 . [https://foo]
 | code
-|{lng:foo} code
+|{Lng:foo} code
 | {lng:foo} code
   | code
 . | code
 . |{lng:foo} code
-  |{lng:foo} code
+  |{Lng:foo} code
   |{lng:foo}
   |
 . | {lng:foo} code

@@ -175,16 +175,8 @@
 
     "parameter": {
       "patterns": [{
-        "comment": "'{foo}",
-        "match": "(\\{)[a-z\\-][^ \\(][^\\}]*(\\})",
-        "name": "constant.other.color.rgb-value.xi",
-        "captures": {
-          "1": {"name": "punctuation.definition.tag.xi"},
-          "2": {"name": "punctuation.definition.tag.xi"}
-        }
-      }, {
         "comment": "'{i}",
-        "match": "(\\{)([a-z\\-])(\\})",
+        "match": "(\\{)([^ \\}])(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
@@ -193,7 +185,7 @@
         }
       }, {
         "comment": "'{i foo}",
-        "match": "(\\{)([a-z\\-]) [^\\}]+(\\})",
+        "match": "(\\{)([^ \\}]) [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
@@ -202,7 +194,7 @@
         }
       }, {
         "comment": "{i(type)}",
-        "match": "(\\{)([a-z\\-])(\\()([^\\)]+)(\\))(\\})",
+        "match": "(\\{)([^ \\}])(\\()([^\\)]+)(\\))(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
@@ -214,7 +206,7 @@
         }
       }, {
         "comment": "'{i(type) foo}",
-        "match": "(\\{)([a-z\\-])(\\()([^\\)]+)(\\)) [^\\}]+(\\})",
+        "match": "(\\{)([^ \\}])(\\()([^\\)]+)(\\)) [^\\}]+(\\})",
         "name": "constant.other.color.rgb-value.xi",
         "captures": {
           "1": {"name": "punctuation.definition.tag.xi"},
@@ -223,6 +215,14 @@
           "4": {"name": "beginning.punctuation.definition.quote.markdown.xi"},
           "5": {"name": "punctuation.definition.tag.xi"},
           "6": {"name": "punctuation.definition.tag.xi"}
+        }
+      }, {
+        "comment": "Most generic case, last to match: {foo}, {Foo} etc",
+        "match": "(\\{)[^ \\}][^\\}]+(\\})",
+        "name": "constant.other.color.rgb-value.xi",
+        "captures": {
+          "1": {"name": "punctuation.definition.tag.xi"},
+          "2": {"name": "punctuation.definition.tag.xi"}
         }
       }]
     },
