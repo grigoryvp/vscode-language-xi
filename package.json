@@ -69,11 +69,11 @@
     ]
   },
   "devDependencies": {
-    "@types/chai": "^4.2.17",
+    "@types/chai": "^4.2.21",
     "chai": "^4.3.4",
     "chalk": "^4.1.1",
-    "mocha": "^8.4.0",
-    "open-cli": "^6.0.1",
-    "vsce": "^1.88.0"
+    "mocha": "^9.0.3",
+    "open-cli": "^7.0.0",
+    "vsce": "^1.96.1"
   }
 }
