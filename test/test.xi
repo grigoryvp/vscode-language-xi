@@ -6,7 +6,7 @@ Todo .
 # '#' list symbol is not working.
 
 . Text with {i input param}, {- cli param}, {i(typed) param}, {i} single
-  param, single {i(typed)} param, {param} without i/o modifier.
+  param, single {i(typed)} param, {param} without i/o modifier and
   {Upper-case param}.
 
 |||
