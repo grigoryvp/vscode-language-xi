@@ -187,7 +187,7 @@ with the `.` character).
 
 Sometimes a document contains some headers that denote meta information
 about the document. Two common examples of such headers are document name
-at top and the "references" sections at bottom. For them a special coloring
+at top and the "reference" sections at bottom. For them a special coloring
 is provided if they are terminated with the "@" characters instead of the dot:
 
 <!--- 500px 150px -->
