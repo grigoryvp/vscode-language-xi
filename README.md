@@ -188,7 +188,7 @@ with the `.` character).
 Sometimes a document contains some headers that denote meta information
 about the document. Two common examples of such headers are document name
 at top and the "reference" section at bottom. For them a special coloring
-is provided if they are terminated with the "@" characters instead of the dot:
+is provided if they are terminated with the "@" character instead of the dot:
 
 <!--- 500px 150px -->
 ![meta heading](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/meta_heading.png)
