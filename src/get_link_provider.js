@@ -36,7 +36,7 @@ module.exports = function(vscode) {
           return null;
         }
       }
-      else if (name.match(/^http(s)?:\/\//)) {
+      else if (name.match(/^[a-zA-Z_-]+:\/\//)) {
         return vscode.Uri.parse(name);
       }
       else {
