@@ -1,3 +1,4 @@
+const process = require('process');
 const tools = require('./tools.js');
 const util = require('util');
 const path = require('path');
@@ -16,6 +17,9 @@ module.exports = function(vscode) {
     }
     xiDir = xiDir.replace(/^~/, `${os.homedir()}/`);
     xiDir = xiDir.replace(/[\/\\]/g, path.sep);
+    xiDir = xiDir.replace(/\${env:([^}]*)}/g, (match, p1) => {
+      return process.env[p1] || ""
+    });
     try {
       const stat = await p(fs.stat)(xiDir);
       if (!stat.isDirectory()) {
