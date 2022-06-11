@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const tools = require('./tools.js');
 
 
@@ -50,17 +51,22 @@ module.exports = function(vscode) {
         const file = path.join(dir, fileName);
         if (anchor) {
           return vscode.Uri.parse(`command:extension.xi.open?${
-            encodeURIComponent(JSON.stringify({
-              file,
-              anchor
-            }))
+            encodeURIComponent(JSON.stringify({file, anchor}))
           }`);
         }
         else {
-          //  If no anchor like [foo#bar] or foo#bar[] is specified, use
-          //  normal file //  uri so VSCode will ask to create a file if
-          //  it does not exists.
-          return vscode.Uri.file(file);
+          try {
+            fs.statSync(file);
+            // Open existing file reusing current editor tab if possible
+            return vscode.Uri.parse(`command:extension.xi.open?${
+              encodeURIComponent(JSON.stringify({file}))
+            }`);
+          } catch(e) {
+            //  If no anchor like [foo#bar] or foo#bar[] is specified, use
+            //  normal file //  uri so VSCode will ask to create a file if
+            //  it does not exists. This will use a new editor tab.
+            return vscode.Uri.file(file);
+          }
         }
       }
     }
