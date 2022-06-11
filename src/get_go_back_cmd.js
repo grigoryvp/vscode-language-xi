@@ -8,7 +8,7 @@ module.exports = function(vscode, ctx, key) {
       //  Current file.
       history.pop();
       //  Previous file
-      const filePath = history.pop();
+      const filePath = history[history.length - 1];
       ctx.globalState.update(key, history);
       const uri = vscode.Uri.file(filePath);
       vscode.workspace.openTextDocument(uri).then(doc => {
