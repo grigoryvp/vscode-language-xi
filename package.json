@@ -33,7 +33,8 @@
         "id": "xi",
         "extensions": [
           ".xi"
-        ]
+        ],
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
