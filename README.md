@@ -125,18 +125,18 @@ is used, highlight syntax is dimmed:
 
 ## Code samples
 
-Xi was created with main goal to keep all my notes about different
+Xi was created with the main goal to keep all my notes about different
 programming languages, framework and APIs I use. It is tailored to
-represent code samples in multiple ways. Most common is "block code sample"
-which is a paragraph (dot-space prefix) that starts with a pipe
-character, followed by meta information inside curly braces. Meta
+represent code samples in multiple ways. Most common is a "block code
+sample" which is a paragraph (dot-space prefix) that starts with a pipe
+character, followed by optional meta information inside curly braces. Meta
 syntax is a list of key-value pairs, a key separated from a value with the
 colon character and pairs separated from each other with the semicolon
 character. I use the 'lng' key to denote a programming language type, with
 a file extension as a value. So the block code sample for a Python
 programming language will start with `. |{lng:py}`, which will be dimmed
 out by a syntax highlighter. Each line of the sample is prefixed with a
-pipe, indented to match the position of the pipe in the `|{lng:py}`:
+pipe, indented to match the position of the pipe in the `|{lng:py}`.
 
 <!--- 280px 60px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_1.png)
@@ -148,7 +148,9 @@ with text:
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_2.png)
 
 Code sample can also be inlined into a paragraph text by starting code
-right after `{}` meta inormation and terminating code with a pipe:
+right after `{}` meta inormation and terminating code with a pipe. for
+multiline code paragraph the optional meta information line should not
+contain any symbols after the meta:
 
 <!--- 400px 40px -->
 ![text highlight](https://raw.githubusercontent.com/grigoryvp/vscode-language-xi/master/doc/code_3.png)
