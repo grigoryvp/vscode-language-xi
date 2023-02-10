@@ -60,7 +60,9 @@ text |{lng:foo}not a special but language| text
 . |{x}|: Non-text item and |:|.
 |{lng:py}a = 1| inline code with spaces, one per line, no '|'.
 |{lng:py}a=1| inline code without spaces, |{lng:py}a=1|2|.
-. |{lng:py}a = 1|: inline code after paragraph.
+. |{ng:py}a = 1|: inline code after paragraph.
+. |[notlink]|.
+. |{lng:js}[notlink]|.
 . |{lng:js}
   | [notlink]
 . | [notlink]

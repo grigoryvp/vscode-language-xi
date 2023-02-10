@@ -126,7 +126,16 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("not matches inside code sample", () => {
+  it("not matches inside single line code sample", () => {
+    const LinkProvider = getLinkProvider(vscode);
+    const inst = new LinkProvider();
+    doc.getText = () => "|{lng}[a]|";
+    const ret = inst.provideDocumentLinks(doc, cancel);
+    expect(ret).to.have.lengthOf(0);
+  });
+
+
+  it("not matches inside multiline code sample", () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "  | foo [a]";

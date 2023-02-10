@@ -76,6 +76,7 @@ module.exports = function(vscode) {
     _getWikiwordLinks(doc, cancel) {
       const res = [];
       const text = doc.getText();
+      const textLen = text.length
       const query = /\[[^ \]\r\n]\]|\[[^ \]\r\n][^\]\r\n]*[^ \]\r\n]\]/gm;
       while (true) {
         if (cancel.isCancellationRequested) return [];
@@ -89,9 +90,15 @@ module.exports = function(vscode) {
         while (lineBeginIdx > 0 && text[lineBeginIdx - 1] !== "\n") {
           lineBeginIdx --;
         }
+        let lineEndIdx = match.index;
+        while (lineEndIdx < textLen && text[lineEndIdx + 1] !== "\n") {
+          lineEndIdx += 1;
+        }
         const name = text.substr(beginIdx, endIdx - beginIdx);
         //  String from line start to link match.
         const prefix = text.substr(lineBeginIdx, match.index - lineBeginIdx);
+        //  Line containing the link
+        const line = text.substr(lineBeginIdx, lineEndIdx - lineBeginIdx + 1);
 
         //  Do not match links in code smaples like `  | [foo]`
         if (prefix.match(/^\s*\|\s+/)) continue;
@@ -103,9 +110,39 @@ module.exports = function(vscode) {
 
         const charBefore = beginIdx > 1 ? text[beginIdx - 2] : null;
         const charAfter = endIdx < text.length - 1 ? text[endIdx + 1] : null;
-        //  Do not match links inside marked words: `|foo| |bar| |[baz]|`.
+        //  Can be something like |[foo]| or |{lng:py} foo[bar]|
+        if (line.includes('|')) {
+          let markBeginIdx = null;
+          let found = false;
+          //  Go from left to right and find all marked words and code
+          //  samples. They are started with pipe plus adjasted character
+          //  to the right and ended with pipe plus adjasted character
+          //  to the left, with any characters inbetween.
+          for (let i = lineBeginIdx + 1; i <= lineEndIdx - 1; i ++) {
+            const curChar = text[i];
+            const prevChar = text[i - 1];
+            const nextChar = text[i + 1];
+            if (curChar != ' ' && prevChar == '|') {
+              markBeginIdx = i;
+              continue;
+            }
+            if (curChar != ' ' && nextChar == '|' && markBeginIdx) {
+              const markEndIdx = i;
+              // Link within a marked word or a code sample?
+              if (beginIdx >= markBeginIdx && endIdx <= markEndIdx) {
+                found = true;
+                break;
+              }
+              markBeginIdx = null;
+            }
+          }
+          //  Do not match links inside marked words: `|foo| |bar| |[baz]|`
+          //  and inside code samples with meta info: `|{lng:js}[foo]|`
+          if (found) continue;
+        }
+
         //! Can't rely on pipe count: `||| [foo]`.
-        if (charBefore === '|' && charAfter === '|') continue;
+        // if (charBefore === '|' && charAfter === '|') continue;
 
         const uri = this._linkNameToVSCodeURI(doc, name);
         if (uri) {
