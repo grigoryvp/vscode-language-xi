@@ -1,14 +1,16 @@
-import * as process from 'process';
-import * as util from 'util';
-import * as path from 'path';
-import * as fs from 'fs';
-import * as os from 'os';
 import * as tools from './tools.mjs';
-const p = util.promisify;
 
 
 export default function getLookupCmd(vscode) {
   return async () => {
+    // Node.js specific libs which are not awailable for "extension for web".
+    const process = await import('process');
+    const util = await import('util');
+    const path = await import('path');
+    const fs = await import('fs');
+    const os = await import('os');
+    const p = util.promisify;
+
     const cfg = vscode.workspace.getConfiguration('xi');
     let xiDir = cfg.lookupPath;
     //  Something like "~/Documents/PowerShell/xi" on any OS.

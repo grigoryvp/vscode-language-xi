@@ -1,10 +1,10 @@
 {
   "name": "language-xi",
   "displayName": "Xi markup language",
-  "description": "Syntax highlighting and wikiword jumps supoort for Xi markup language",
+  "description": "Syntax highlighting and wikiword jumps support for Xi markup language",
   "repository": "https://github.com/grigoryvp/vscode-language-xi",
   "icon": "icon.png",
-  "version": "1.10.60",
+  "version": "1.10.61",
   "publisher": "grigoryvp",
   "license": "SEE LICENSE IN README.md",
   "engines": {
@@ -25,8 +25,8 @@
     "build-pre-release": "vsce package --pre-release --out ./out/extension.vsix",
     "publish": "open-cli https://marketplace.visualstudio.com/manage"
   },
-  "main": "./out/extension.js",
-  "browser": "./out/extension.js",
+  "main": "./out/extension-node.js",
+  "browser": "./out/extension-browser.js",
   "files": [
     "./out/extension.js",
     "./src/*.json"
