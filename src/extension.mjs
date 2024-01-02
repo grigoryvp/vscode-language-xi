@@ -1,9 +1,14 @@
 import * as vscode from 'vscode';
+import { Utils } from 'vscode-uri'
 import getLinkProvider from './get_link_provider.mjs';
 import getFoldProvider from './get_fold_provider.mjs';
 import getEditorChangeHandler from './get_editor_change_handler.mjs';
 import getGoBackCmd from './get_go_back_cmd.mjs';
 import getOpenCmd from './get_open_cmd.mjs';
+
+
+// Not exposed by default
+vscode.Uri.Utils = Utils;
 
 
 export async function activate(ctx) {

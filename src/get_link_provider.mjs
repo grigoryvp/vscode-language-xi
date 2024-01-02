@@ -1,18 +1,15 @@
-import * as path from 'path';
-import * as fs from 'fs';
-
-
+// Requires vscode.Uri.Utils to reference { Utils } from 'vscode-uri'
 export default function getLinkProvider(vscode) {
 
 
   class LinkProvider {
 
 
-    provideDocumentLinks(doc, cancel) {
+    async provideDocumentLinks(doc, cancel) {
       const res = [];
-      res.push(...this._getWikiwordLinks(doc, cancel));
+      res.push(... await this._getWikiwordLinks(doc, cancel));
       if (cancel.isCancellationRequested) return [];
-      res.push(...this._getHeaderLinks(doc, cancel));
+      res.push(... await this._getHeaderLinks(doc, cancel));
       if (cancel.isCancellationRequested) return [];
       return res;
     }
@@ -20,7 +17,7 @@ export default function getLinkProvider(vscode) {
 
     //  Give link name inside [], like "foo#bar" evaluates to vscode.Uri
     //  or null.
-    _linkNameToVSCodeURI(doc, name) {
+    async _linkNameToVSCodeURI(doc, name) {
       if (name.startsWith('#')) {
         const anchor = name.slice(1).trim();
         if (anchor.length) {
@@ -46,8 +43,8 @@ export default function getLinkProvider(vscode) {
         //  different writing depending on context, ex capitalized at
         //  the sentence start.
         const fileName = `${link.replace(/ /g, '_')}.xi`.toLowerCase();
-        const dir = path.dirname(doc.fileName);
-        const file = path.join(dir, fileName);
+        const dir = vscode.Uri.Utils.dirname(vscode.Uri.parse(doc.fileName));
+        const file = vscode.Uri.Utils.joinPath(dir, fileName).toString();
         if (anchor) {
           return vscode.Uri.parse(`command:extension.xi.open?${
             encodeURIComponent(JSON.stringify({file, anchor}))
@@ -55,7 +52,7 @@ export default function getLinkProvider(vscode) {
         }
         else {
           try {
-            fs.statSync(file);
+            await vscode.workspace.fs.stat(file);
             // Open existing file reusing current editor tab if possible
             return vscode.Uri.parse(`command:extension.xi.open?${
               encodeURIComponent(JSON.stringify({file}))
@@ -72,7 +69,7 @@ export default function getLinkProvider(vscode) {
 
 
     //  Gather links for simple wikiwords like "[foo#bar]"
-    _getWikiwordLinks(doc, cancel) {
+    async _getWikiwordLinks(doc, cancel) {
       const res = [];
       const text = doc.getText();
       const textLen = text.length
@@ -143,7 +140,7 @@ export default function getLinkProvider(vscode) {
         //! Can't rely on pipe count: `||| [foo]`.
         // if (charBefore === '|' && charAfter === '|') continue;
 
-        const uri = this._linkNameToVSCodeURI(doc, name);
+        const uri = await this._linkNameToVSCodeURI(doc, name);
         if (uri) {
           const toPosition = (v) => doc.positionAt(v);
           const [begin, end] = [beginIdx, endIdx].map(toPosition);
@@ -157,7 +154,7 @@ export default function getLinkProvider(vscode) {
 
     //  Gather links for header wikiwords like "  [foo] bar baz[] [foo] ."
     //  This also includes header anchor links like #todo[]
-    _getHeaderLinks(doc, cancel) {
+    async _getHeaderLinks(doc, cancel) {
       const res = [];
       const text = doc.getText();
       const query = (() => {
@@ -183,7 +180,7 @@ export default function getLinkProvider(vscode) {
         let endIdx = match.index + match[0].length - match[3].length;
         const name = text.substr(beginIdx, endIdx - beginIdx);
 
-        const uri = this._linkNameToVSCodeURI(doc, name)
+        const uri = await this._linkNameToVSCodeURI(doc, name)
         if (uri) {
           const toPosition = (v) => doc.positionAt(v);
           const [begin, end] = [beginIdx, endIdx].map(toPosition);

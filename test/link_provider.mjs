@@ -3,7 +3,7 @@ const expect = chai.expect;
 import getLinkProvider from './../src/get_link_provider.mjs';
 
 
-describe("LinkProvider class", () => {
+describe("LinkProvider class", async () => {
 
   const vscode = {
     Range: function(...v) { [this.begin, this.end] = [...v]; },
@@ -11,6 +11,10 @@ describe("LinkProvider class", () => {
     Uri: {
       file: (path) => ({path}),
       parse: (text) => ({text}),
+      Utils: {
+        dirname: (path) => "",
+        joinPath: (...items) => items.filter(v => v).join("/")
+      }
     },
   };
 
@@ -30,11 +34,11 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches simple link", () => {
+  it("matches simple link", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[a]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 2}});
@@ -42,11 +46,11 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("lowercase file names for links", () => {
+  it("lowercase file names for links", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[Ab]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 3}});
@@ -54,55 +58,55 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches simple header link", () => {
+  it("matches simple header link", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "foo[] .";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 0, end: 3}});
   });
 
 
-  it("matches simple header link with offset", () => {
+  it("matches simple header link with offset", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "  foo[] .";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 2, end: 5}});
   });
 
 
-  it("matches header link for wikiword at start", () => {
+  it("matches header link for wikiword at start", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[foo] bar[] .";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(2);
     const link = ret[1];
     expect(link).deep.includes({range: {begin: 6, end: 9}});
   });
 
 
-  it("matches header link for wikiword at end", () => {
+  it("matches header link for wikiword at end", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "foo[] [bar] .";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(2);
     const link = ret[1];
     expect(link).deep.includes({range: {begin: 0, end: 3}});
   });
 
 
-  it("matches header link to anchor", () => {
+  it("matches header link to anchor", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "#foo[] .";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 0, end: 4}});
@@ -114,11 +118,11 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches header link to url", () => {
+  it("matches header link to url", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "http://foo[] .";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 0, end: 10}});
@@ -126,54 +130,54 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("not matches inside single line code sample", () => {
+  it("not matches inside single line code sample", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "|{lng}[a]|";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
   });
 
 
-  it("not matches inside multiline code sample", () => {
+  it("not matches inside multiline code sample", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "  | foo [a]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
   });
 
 
-  it("not matches inside paragraph code sample", () => {
+  it("not matches inside paragraph code sample", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => ". | foo [a]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
   });
 
 
-  it("not matches inside marked text", () => {
+  it("not matches inside marked text", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "|foo| |bar| |[baz]|";
-    let ret = inst.provideDocumentLinks(doc, cancel);
+    let ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
 
     //  Wrong number of pipes before link.
     doc.getText = () => "||a| [b]";
-    ret = inst.provideDocumentLinks(doc, cancel);
+    ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 6, end: 7}});
   });
 
 
-  it("matches link with anchor", () => {
+  it("matches link with anchor", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[a#b]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 4}});
@@ -186,11 +190,11 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches link with nested anchor", () => {
+  it("matches link with nested anchor", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[a#b#c]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 6}});
@@ -203,11 +207,11 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches link to anchor", () => {
+  it("matches link to anchor", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[#b]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 3}});
@@ -219,22 +223,22 @@ describe("LinkProvider class", () => {
   });
 
 
-  it("matches http link", () => {
+  it("matches http link", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[http://foo]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 11}});
     expect(link).deep.includes({uri: {text: 'http://foo'}});
   });
 
-  it("matches link anchors with slashes", () => {
+  it("matches link anchors with slashes", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "[a#b/#c/]";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(1);
     const link = ret[0];
     expect(link).deep.includes({range: {begin: 1, end: 8}});
@@ -246,11 +250,11 @@ describe("LinkProvider class", () => {
     expect(link).deep.includes({uri: {text}});
   });
 
-  it("not matches between marked text", () => {
+  it("not matches between marked text", async () => {
     const LinkProvider = getLinkProvider(vscode);
     const inst = new LinkProvider();
     doc.getText = () => "|[| |]]|";
-    const ret = inst.provideDocumentLinks(doc, cancel);
+    const ret = await inst.provideDocumentLinks(doc, cancel);
     expect(ret).to.have.lengthOf(0);
   });
 });
