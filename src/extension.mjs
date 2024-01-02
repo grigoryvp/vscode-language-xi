@@ -1,15 +1,15 @@
-const vscode = require('vscode');
-const geLinkProvider = require('./get_link_provider.js');
-const getFoldProvider = require('./get_fold_provider.js');
-const getEditorChangeHandler = require('./get_editor_change_handler.js');
-const getGoBackCmd = require('./get_go_back_cmd.js');
-const getOpenCmd = require('./get_open_cmd.js');
-const getLookupCmd = require('./get_lookup_cmd.js');
+import * as vscode from 'vscode';
+import getLinkProvider from './get_link_provider.mjs';
+import getFoldProvider from './get_fold_provider.mjs';
+import getEditorChangeHandler from './get_editor_change_handler.mjs';
+import getGoBackCmd from './get_go_back_cmd.mjs';
+import getOpenCmd from './get_open_cmd.mjs';
+import getLookupCmd from './get_lookup_cmd.mjs';
 
 
-module.exports.activate = function(ctx) {
+export function activate(ctx) {
   const HISTORY_KEY = 'file-history';
-  const LinkProvider = geLinkProvider(vscode);
+  const LinkProvider = getLinkProvider(vscode);
   const FoldProvider = getFoldProvider(vscode);
   const onEditorChange = getEditorChangeHandler(ctx, HISTORY_KEY);
   const goBackCmd = getGoBackCmd(vscode, ctx, HISTORY_KEY);

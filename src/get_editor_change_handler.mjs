@@ -1,7 +1,4 @@
-const tools = require('./tools.js');
-
-
-module.exports = function(ctx, key) {
+export function getEditorChangeHandler(ctx, key) {
   return function(e) {
     if (!e) return;
     if (!e.document) return;

@@ -1,9 +1,9 @@
-function parse(text, cancel) {
+export function parse(text, cancel) {
   return [];
 }
 
 
-class Token {
+export class Token {
   //  Indentation followed by dot and space: marks paragraph begin.
   static BEGIN_MARK = 2;
   //  Space followed by dot and EOL: marks heading end.
@@ -25,7 +25,7 @@ class Token {
 //  and after of the current one are analyzed in order to get meaning
 //  from the grammar. Tokens should be organized a way so no knowledge of
 //  previous or next token is required to determine current token.
-function tokenize(text, cancel) {
+export function tokenize(text, cancel) {
   const STR_BEGIN = 2;
   const STR_INDENT = 3;
   const BEGIN_MARK_WAIT_SPACE = 4;
@@ -135,10 +135,3 @@ function tokenize(text, cancel) {
 
   return tokens;
 }
-
-
-module.exports = {
-  parse,
-  tokenize,
-  Token,
-};

@@ -1,6 +1,4 @@
-const tools = require('./tools.js');
-
-module.exports = function(vscode) {
+export function getJumpToAnchor(vscode) {
 
   // From MDN
   function escapeRegExp(string) {

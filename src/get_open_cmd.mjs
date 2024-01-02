@@ -1,8 +1,7 @@
-const getJumpToAnchor = require('./get_jump_to_anchor.js');
-const tools = require('./tools.js');
+import getJumpToAnchor from './get_jump_to_anchor.mjs';
 
 
-module.exports = function(vscode) {
+export function getOpenCmd(vscode) {
   const jumpToAnchor = getJumpToAnchor(vscode);
 
 

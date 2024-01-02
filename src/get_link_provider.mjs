@@ -1,9 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const tools = require('./tools.js');
+import * as path from 'path';
+import * as fs from 'fs';
 
 
-module.exports = function(vscode) {
+export function getLinkProvider(vscode) {
 
 
   class LinkProvider {

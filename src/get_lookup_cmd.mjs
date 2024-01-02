@@ -1,13 +1,13 @@
-const process = require('process');
-const tools = require('./tools.js');
-const util = require('util');
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
+import * as process from 'process';
+import * as util from 'util';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as tools from './tools.mjs';
 const p = util.promisify;
 
 
-module.exports = function(vscode) {
+export function getLookupCmd(vscode) {
   return async () => {
     const cfg = vscode.workspace.getConfiguration('xi');
     let xiDir = cfg.lookupPath;

@@ -1,4 +1,4 @@
-module.exports = function(vscode) {
+export function getFoldProvider(vscode) {
 
 
   class FoldProvider {

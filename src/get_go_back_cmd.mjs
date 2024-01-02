@@ -1,7 +1,4 @@
-const tools = require('./tools.js');
-
-
-module.exports = function(vscode, ctx, key) {
+export function getGoBackCmf(vscode, ctx, key) {
   return function() {
     const history = ctx.globalState.get(key);
     if (Array.isArray(history) && history.length > 1) {
