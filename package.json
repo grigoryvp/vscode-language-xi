@@ -20,6 +20,7 @@
   "scripts": {
     "vscode:prepublish": "node esbuild.mjs",
     "color-theme": "node --no-warnings ./color_theme_compatibility/display.mjs",
+    "test": "node ./node_modules/mocha/bin/mocha.js",
     "build": "vsce package --out ./out/extension.vsix",
     "publish": "open-cli https://marketplace.visualstudio.com/manage"
   },
