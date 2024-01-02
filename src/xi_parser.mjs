@@ -33,9 +33,11 @@ export function tokenize(text, cancel) {
   const END_MARK_WAIT_EOL = 6;
   const TEXT = 7;
   const EOF = null;
+  let char = "";
   let mode = STR_BEGIN;
   let pos = -1;
   let acc = "";
+  let token = null;
   let tokens = [];
 
   while(pos < text.length && !cancel.isCancellationRequested) {
@@ -76,7 +78,7 @@ export function tokenize(text, cancel) {
         acc += char;
         switch(mode) {
           case STR_INDENT:
-            indentLen = acc.length - 1;
+            const indentLen = acc.length - 1;
             if (indentLen % 2 == 0) {
               mode = BEGIN_MARK_WAIT_SPACE;
             }

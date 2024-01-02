@@ -4,7 +4,7 @@ import getCmd from './../src/get_open_cmd.mjs';
 
 
 describe("'open' command", () => {
-  vscode = {
+  const vscode = {
     Uri: {
       file: (path) => ({path}),
     },
