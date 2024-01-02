@@ -18,13 +18,14 @@
     "onCommand:extension.xi.lookup"
   ],
   "scripts": {
+    "vscode:prepublish": "node esbuild.mjs",
     "color-theme": "node --no-warnings ./color_theme_compatibility/display.mjs",
     "build": "vsce package --out ./out/extension.vsix",
     "publish": "open-cli https://marketplace.visualstudio.com/manage"
   },
-  "main": "./src/extension.js",
+  "main": "./out/extension.js",
   "files": [
-    "./src/*.js",
+    "./out/extension.js",
     "./src/*.json"
   ],
   "contributes": {
