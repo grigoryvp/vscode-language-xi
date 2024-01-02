@@ -8,8 +8,8 @@ export const TXT_ERR_READ = `Can't read '{0}'`;
 
 
 //  Wait some time for VSCode to fully load before using this.
-export function debug(...msgList) {
-  if (!this._vscode) this._vscode = require('vscode');
+export async function debug(...msgList) {
+  if (!this._vscode) this._vscode = await import('vscode');
   if (!this._channel) {
     this._channel = this._vscode.window.createOutputChannel("language-xi");
   }
@@ -19,8 +19,8 @@ export function debug(...msgList) {
 
 
 //  Display error message with interpolation.
-export function error(msg, ...valSeq) {
-  if (!this._vscode) this._vscode = require('vscode');
+export async function error(msg, ...valSeq) {
+  if (!this._vscode) this._vscode = await import('vscode');
   if (!this._channel) {
     this._channel = this._vscode.window.createOutputChannel("language-xi");
   }

@@ -1,5 +1,9 @@
+import * as tools from './tools.mjs';
+
+
 // Requires vscode.Uri.Utils to reference { Utils } from 'vscode-uri'
 export default function getLinkProvider(vscode) {
+  const Utils = vscode.Uri.Utils;
 
 
   class LinkProvider {
@@ -43,13 +47,14 @@ export default function getLinkProvider(vscode) {
         //  different writing depending on context, ex capitalized at
         //  the sentence start.
         const fileName = `${link.replace(/ /g, '_')}.xi`.toLowerCase();
-        const dir = vscode.Uri.Utils.dirname(vscode.Uri.parse(doc.fileName));
+        const dirUri = Utils.dirname(vscode.Uri.file(doc.fileName));
         let fileUri = null;
-        if (dir.length > 0) {
-          fileUri = vscode.Uri.Utils.joinPath(dir, fileName);
+        if (dirUri.path && dirUri.path.length > 0) {
+          fileUri = Utils.joinPath(dirUri, fileName);
         } else {
           fileUri = vscode.Uri.file(fileName);
         }
+
         if (anchor) {
           return vscode.Uri.parse(`command:extension.xi.open?${
             encodeURIComponent(JSON.stringify({file: fileUri.path, anchor}))
