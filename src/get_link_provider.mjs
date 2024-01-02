@@ -44,24 +44,25 @@ export default function getLinkProvider(vscode) {
         //  the sentence start.
         const fileName = `${link.replace(/ /g, '_')}.xi`.toLowerCase();
         const dir = vscode.Uri.Utils.dirname(vscode.Uri.parse(doc.fileName));
-        const file = vscode.Uri.Utils.joinPath(dir, fileName).toString();
+        const fileUri = vscode.Uri.Utils.joinPath(dir, fileName);
+        const filePath = vscode.Uri.Utils.joinPath(dir, fileName).path;
         if (anchor) {
           return vscode.Uri.parse(`command:extension.xi.open?${
-            encodeURIComponent(JSON.stringify({file, anchor}))
+            encodeURIComponent(JSON.stringify({file: filePath, anchor}))
           }`);
         }
         else {
           try {
-            await vscode.workspace.fs.stat(file);
+            await vscode.workspace.fs.stat(fileUri);
             // Open existing file reusing current editor tab if possible
             return vscode.Uri.parse(`command:extension.xi.open?${
-              encodeURIComponent(JSON.stringify({file}))
+              encodeURIComponent(JSON.stringify({file: filePath}))
             }`);
           } catch(e) {
             //  If no anchor like [foo#bar] or foo#bar[] is specified, use
             //  normal file //  uri so VSCode will ask to create a file if
             //  it does not exists. This will use a new editor tab.
-            return vscode.Uri.file(file);
+            return fileUri;
           }
         }
       }

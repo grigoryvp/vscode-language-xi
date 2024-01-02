@@ -30,8 +30,8 @@ export async function activate(ctx) {
 
   // FIXME: not implemented for web context, need use cases.
   if (vscode.env.uiKind !== vscode.UIKind.Web ) {
-    const getLookupCmd = await import('./get_lookup_cmd.mjs');
-    const lookupCmd = getLookupCmd(vscode);
+    const loadedModule = await import('./get_lookup_cmd.mjs');
+    const lookupCmd = loadedModule.default(vscode);
     ctx.subscriptions.push(regCmd('extension.xi.lookup', lookupCmd));
   }
 }
