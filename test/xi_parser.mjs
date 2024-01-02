@@ -1,8 +1,8 @@
-const fs = require('fs/promises');
-const chai = require('chai');
+import * as fs from 'fs/promises';
+import * as chai from 'chai';
 const expect = chai.expect;
 
-const parser = require('./../src/xi_parser.js');
+import * as parser from './../src/xi_parser.mjs';
 
 
 describe("Xi grammar parsing", () => {

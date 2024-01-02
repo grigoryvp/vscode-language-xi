@@ -1,6 +1,6 @@
-const chai = require('chai');
+import * as chai from 'chai';
 const expect = chai.expect;
-const getJumpToAnchor = require('./../src/get_jump_to_anchor.js');
+import getJumpToAnchor from './../src/get_jump_to_anchor.mjs';
 
 
 describe("jump to anchor", () => {

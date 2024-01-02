@@ -1,6 +1,6 @@
-const chai = require('chai');
+import * as chai from 'chai';
 const expect = chai.expect;
-const getLinkProvider = require('./../src/get_link_provider.js');
+import getLinkProvider from './../src/get_link_provider.mjs';
 
 
 describe("LinkProvider class", () => {

@@ -1,6 +1,6 @@
-const chai = require('chai');
+import * as chai from 'chai';
 const expect = chai.expect;
-const getCmd = require('./../src/get_go_back_cmd.js');
+import getCmd from './../src/get_go_back_cmd.mjs';
 
 
 describe("'go back' command", () => {

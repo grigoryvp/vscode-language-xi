@@ -1,6 +1,6 @@
-const chai = require('chai');
+import * as chai from 'chai';
 const expect = chai.expect;
-const getHandler = require('./../src/get_editor_change_handler.js');
+import getHandler from './../src/get_editor_change_handler.mjs';
 
 
 describe("'active editor changed' handler", () => {

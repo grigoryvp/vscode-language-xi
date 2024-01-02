@@ -1,6 +1,6 @@
-const chai = require('chai');
+import * as chai from 'chai';
 const expect = chai.expect;
-const getFoldProvider = require('./../src/get_fold_provider.js');
+import getFoldProvider from './../src/get_fold_provider.mjs';
 
 
 describe("FoldProvider class", () => {
