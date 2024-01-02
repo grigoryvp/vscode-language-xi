@@ -8,7 +8,7 @@
   "publisher": "grigoryvp",
   "license": "SEE LICENSE IN README.md",
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.63.0"
   },
   "categories": [
     "Other"
@@ -22,6 +22,7 @@
     "color-theme": "node --no-warnings ./color_theme_compatibility/display.mjs",
     "test": "npm exec mocha",
     "build": "vsce package --out ./out/extension.vsix",
+    "build-pre-release": "vsce package --pre-release --out ./out/extension.vsix",
     "publish": "open-cli https://marketplace.visualstudio.com/manage"
   },
   "main": "./out/extension.js",
