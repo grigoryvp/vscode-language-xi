@@ -18,7 +18,7 @@
     "onCommand:extension.xi.lookup"
   ],
   "scripts": {
-    "color-theme": "node --experimental-modules --no-warnings ./color_theme_compatibility/display.mjs",
+    "color-theme": "node --no-warnings ./color_theme_compatibility/display.mjs",
     "build": "vsce package --out ./out/extension.vsix",
     "publish": "open-cli https://marketplace.visualstudio.com/manage"
   },

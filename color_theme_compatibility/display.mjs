@@ -1,7 +1,7 @@
 import chalk from 'chalk';
-import theme_default from './dark_defaults.json';
-import theme_vs from './dark_vs.json';
-import theme_plus from './dark_plus.json';
+import theme_default from './dark_defaults.json' assert {type: 'json'};
+import theme_vs from './dark_vs.json' assert {type: 'json'};
+import theme_plus from './dark_plus.json' assert {type: 'json'};
 
 const colorBg = theme_default.colors['editor.background'].toLowerCase();
 const colorFg = theme_default.colors['editor.foreground'].toLowerCase();
