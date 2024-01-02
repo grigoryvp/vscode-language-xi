@@ -4,17 +4,15 @@ import getFoldProvider from './get_fold_provider.mjs';
 import getEditorChangeHandler from './get_editor_change_handler.mjs';
 import getGoBackCmd from './get_go_back_cmd.mjs';
 import getOpenCmd from './get_open_cmd.mjs';
-import getLookupCmd from './get_lookup_cmd.mjs';
 
 
-export function activate(ctx) {
+export async function activate(ctx) {
   const HISTORY_KEY = 'file-history';
   const LinkProvider = getLinkProvider(vscode);
   const FoldProvider = getFoldProvider(vscode);
   const onEditorChange = getEditorChangeHandler(ctx, HISTORY_KEY);
   const goBackCmd = getGoBackCmd(vscode, ctx, HISTORY_KEY);
   const openCmd = getOpenCmd(vscode);
-  const lookupCmd = getLookupCmd(vscode);
 
   vscode.window.onDidChangeActiveTextEditor(onEditorChange);
   const regDocLinkProvider = vscode.languages.registerDocumentLinkProvider;
@@ -24,5 +22,11 @@ export function activate(ctx) {
   const regCmd = vscode.commands.registerCommand;
   ctx.subscriptions.push(regCmd('extension.xi.goBack', goBackCmd));
   ctx.subscriptions.push(regCmd('extension.xi.open', openCmd));
-  ctx.subscriptions.push(regCmd('extension.xi.lookup', lookupCmd));
+
+  // FIXME: not implemented for web context, need use cases.
+  if (vscode.env.uiKind !== vscode.UIKind.Web ) {
+    const getLookupCmd = await import('./get_lookup_cmd.mjs');
+    const lookupCmd = getLookupCmd(vscode);
+    ctx.subscriptions.push(regCmd('extension.xi.lookup', lookupCmd));
+  }
 }
