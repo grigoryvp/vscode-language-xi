@@ -25,6 +25,7 @@
     "publish": "open-cli https://marketplace.visualstudio.com/manage"
   },
   "main": "./out/extension.js",
+  "browser": "./out/extension.js",
   "files": [
     "./out/extension.js",
     "./src/*.json"
