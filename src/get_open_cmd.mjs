@@ -1,7 +1,7 @@
 import getJumpToAnchor from './get_jump_to_anchor.mjs';
 
 
-export function getOpenCmd(vscode) {
+export default function getOpenCmd(vscode) {
   const jumpToAnchor = getJumpToAnchor(vscode);
 
 

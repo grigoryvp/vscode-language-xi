@@ -1,4 +1,4 @@
-export function getGoBackCmf(vscode, ctx, key) {
+export default function getGoBackCmf(vscode, ctx, key) {
   return function() {
     const history = ctx.globalState.get(key);
     if (Array.isArray(history) && history.length > 1) {

@@ -1,4 +1,4 @@
-export function getFoldProvider(vscode) {
+export default function getFoldProvider(vscode) {
 
 
   class FoldProvider {

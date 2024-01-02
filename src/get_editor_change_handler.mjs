@@ -1,4 +1,4 @@
-export function getEditorChangeHandler(ctx, key) {
+export default function getEditorChangeHandler(ctx, key) {
   return function(e) {
     if (!e) return;
     if (!e.document) return;

@@ -1,4 +1,4 @@
-export function getJumpToAnchor(vscode) {
+export default function getJumpToAnchor(vscode) {
 
   // From MDN
   function escapeRegExp(string) {

@@ -7,7 +7,7 @@ import * as tools from './tools.mjs';
 const p = util.promisify;
 
 
-export function getLookupCmd(vscode) {
+export default function getLookupCmd(vscode) {
   return async () => {
     const cfg = vscode.workspace.getConfiguration('xi');
     let xiDir = cfg.lookupPath;
