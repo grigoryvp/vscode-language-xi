@@ -10,6 +10,13 @@ export default function getLinkProvider(vscode) {
 
 
     async provideDocumentLinks(doc, cancel) {
+      const cfg = vscode.workspace.getConfiguration('xi');
+      if (cfg.debug) {
+        tools.debug(vscode, "LinkProvider().provideDocumentLinks()");
+        const dirUri = Utils.dirname(vscode.Uri.file(doc.fileName));
+        tools.debug(vscode, `  doc ${doc.fileName} dir ${dirUri.toString()}`);
+      }
+
       const res = [];
       res.push(... await this._getWikiwordLinks(doc, cancel));
       if (cancel.isCancellationRequested) return [];
