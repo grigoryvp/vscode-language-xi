@@ -16,6 +16,13 @@ describe("LinkProvider class", async () => {
         joinPath: (...items) => items.filter(v => v).join("/")
       }
     },
+    workspace: {
+      getConfiguration: () => {
+        return {
+          debug: false,
+        };
+      },
+    }
   };
 
   const doc = {
