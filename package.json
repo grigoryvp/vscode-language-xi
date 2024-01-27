@@ -32,29 +32,23 @@
     "./src/*.json"
   ],
   "contributes": {
-    "languages": [
-      {
-        "id": "xi",
-        "extensions": [
-          ".xi"
-        ],
-        "configuration": "./language-configuration.json"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "xi",
-        "scopeName": "text.xi",
-        "path": "./src/xi.tmLanguage.json"
-      }
-    ],
-    "commands": [
-      {
-        "command": "extension.xi.lookup",
-        "title": "Xi: Look up a .xi file",
-        "when": "!isWeb"
-      }
-    ],
+    "languages": [{
+      "id": "xi",
+      "extensions": [
+        ".xi"
+      ],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "xi",
+      "scopeName": "text.xi",
+      "path": "./src/xi.tmLanguage.json"
+    }],
+    "commands": [{
+      "command": "extension.xi.lookup",
+      "title": "Xi: Look up a .xi file",
+      "when": "!isWeb"
+    }],
     "configuration": {
       "type": "object",
       "title": "Xi configuration",
@@ -71,14 +65,12 @@
         }
       }
     },
-    "keybindings": [
-      {
-        "command": "extension.xi.lookup",
-        "key": "ctrl+k x",
-        "mac": "cmd+k x",
-        "when": "!isWeb"
-      }
-    ]
+    "keybindings": [{
+      "command": "extension.xi.lookup",
+      "key": "ctrl+k x",
+      "mac": "cmd+k x",
+      "when": "!isWeb"
+    }]
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
