@@ -92,7 +92,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
-    "@vscode/vsce": "^2.22.0",
+    "@vscode/vsce": "^3.9.2",
     "chai": "^4.3.10",
     "chalk": "^5.3.0",
     "esbuild": "^0.28.1",
